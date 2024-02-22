@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8"> 
+	<meta http-equiv="X-UA-Compatible"content="IE=edge"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<title>Profile</title> 
+	<link rel="stylesheet" href="{% static '/css/profile.css' %}" text="text/css">
+</head>
+<body>
+	<header>
+		<div class="logosec">
+			<a href="/" style="text-decoration:none;"><div class="logo"  style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">EVERGLOWY</div></a>
+			<img src= "{% static 'images/menu-png-icon-13.png' %}" class="icn menuicn" id="menuicn" alt="menu-icon">
+		</div>
+	</header>
+
+	<div class="main-container">
+		<div class="navcontainer">
+			<nav class="nav">
+				<div class="nav-upper-options">
+					<div class="nav-option option1">
+						<img src= "{% static 'images/Profile-PNG-Image.png' %}" class="nav-img" alt="profile">
+							<a href="profile" style="text-decoration:none; color:black;"><h3> Profile</h3></a>
+					</div>
+
+					<div class="nav-option option3">
+						<img src= "{% static 'images/address-icon-png-5.png' %}" class="nav-img" alt="address">
+							<a href="view_address" style="text-decoration:none; color:black;"><h3> Address</h3></a>
+					</div>
+
+					<div class="option2 nav-option">
+						<img src= "{% static 'images/order-png-image.png' %}" class="nav-img" alt="orders">
+						<a href="orders" style="text-decoration:none; color:black;"><h3> Orders</h3></a>
+					</div>
+
+					<div class="nav-option option3">
+						<img src= "{% static 'images/fav-png-image.png' %}" class="nav-img" alt="fav">
+						<a href="wishlist" style="text-decoration:none; color:black;"><h3> Favourites</h3></a>
+					</div>
+
+					<div class="nav-option option3">
+						<img src= "{% static 'images/cart png image.png' %}" class="nav-img" alt="fav">
+						<a href="cart" style="font-size: 1.17em;; font-weight:bold; text-decoration:none; color:black;"><h3> Cart</h3></a>
+					</div>
+
+					<div class="nav-option logout">
+						<img src= "{% static 'images/logout-png-image.png' %}" class="nav-img" alt="logout">
+						<a href="logout" style="text-decoration:none;"><h3 style="text-decoration:none; color:black; font-size: 1.17em;; font-weight:bold;"> Logout</h3></a>
+					</div>
+
+				</div>
+			</nav>
+		</div>
+		<div class="main">
+
+			<div class="profile-container">
+				{% for x in data %}
+				<div class="profile-picture">
+					<img src= "{{ user_image.image.url }}"   height="150px" width="200px">
+				</div>
+				<div class="profile-info">
+
+					<h1 style="font-weight: 600;">{{x.user_name}}</h1>
+				</div>
+				{% endfor %}
+			</div>
+			
+			
+		</div> 
+	</div> 
+
+	<script>
+		let menuicn = document.querySelector(".menuicn");
+		let nav = document.querySelector(".navcontainer");
+
+		menuicn.addEventListener("click", () => {
+			nav.classList.toggle("navclose");
+		})
+	</script>
+</body> 
+</html>

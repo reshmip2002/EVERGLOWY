@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/homepage.css' %}">
+    <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand " href="#"  style="margin-left: 0.1%;"><h1 style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">EVERGLOWY</h1></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 width-100">
+                <li class="nav-item margin-20">
+                  <a class="nav-link active" aria-current="page" href="homepage.html" id="home">Home</a>
+                </li>
+                <li class="nav-item dropdown margin-20">
+                  <a class="nav-link dropdown-toggle" type="choose" href="category" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Category
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown"  style="color:black;">
+                    {% for x in cat %}
+                    <li><a class="dropdown-item" href="category/{{x.main_category_id}}" style="color:black;">{{x.main_category_name}}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                <li class="nav-item margin-20">
+                  <a class="nav-link" href=" " id="brand">Brand</a>
+              </li>
+              <li class="nav-item margin-20">
+                <a class="nav-link" href="offers" id="shop">Offers</a>
+            </li>
+                <li class="nav-item margin-20"><div class=".search-container">
+              <form method="POST" action="/search">
+                {% csrf_token %}
+              <input type="text" placeholder="Search.." name="search" style="border-color:green;">
+              <button type="submit" class="btn btn-close-black" style="height:38px; border-color:green; border-radius:0;"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form></div>
+                </li>
+            <li><a href="wishlist"><i class="fa-solid fa-heart margin-20" style="font-size: larger; color: red;   padding-top: 10px;"></i></a></li>
+            <li><a href="cart"><i class="fa-solid fa-cart-shopping margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
+            <li><a href="profile"><i class="fa-solid fa-user margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
+            <li>
+              <form class="d-flex" id="form">
+                <button class="btn btn-outline-success login" type="login" text="Login" >
+                  <a href="{% url 'login' %}" style="color: black;">Login</a>
+                </button>
+            </form>
+            </li>
+              </ul>
+            </div>
+          </div>
+        </nav><br>
+
+
+
+   <!--Main layout-->
+  <main>
+    <div class="container">
+    <section class="single">
+      <div class="row">
+        <div class="col-md-6" style="background-color:brown; color:white;">
+<!--          <div class="card" style="width:30rem; height:30rem; text-align:center; margin-left:30px; margin-top:30px;">-->
+<!--            <div class="card-body">-->
+                        <h3 style="text-align: center;  margin: top 40px; font-style:italic; font-weight:300; ">“The best foundation you can wear is healthy glowing skin.” <br> “Clear skin is a reflection of a healthy mind and body.” <br>
+                            “Love the skin you’re in, because that’s the only one you’ve got.” <br> “Your skin is a canvas, make sure you paint it well.” <br>“Skin care is not just about looking good, it’s about feeling good too.”</h3>
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+        <div class="col-md-6">
+          <img src="{% static 'images/home.jpg' %}" width="100%" height="100%">
+        </div>
+      </div>
+    </section><br><br>
+
+
+
+  <!-- Products -->
+    <section>
+      {% for category_name,category_products in categorized_products.items %}
+    <div class="text-center">
+      <h2 style="font-weight: 900; font-weight: bolder; ">{{ category_name }}</h2><br>
+      <div class="row">
+        {% for x in category_products %}
+<!--        <h2>{{ main_category_name }}</h2>-->
+        <div class="col-lg-3 col-md-3 mb-3">
+          <div class="card" style="width:18rem; height:25rem">
+            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+              data-mdb-ripple-color="light"><br>
+
+              <img src="{{ x.images.first.image.url }}" height="150px;" width="150px;">
+
+              <a href="products/{{x.product_id}}">
+                <div class="hover-overlay">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </div>
+              </a>
+            </div>
+            <div class="card-body"  >
+              <a href="products/{{x.product_id}}" class="text-reset" style="text-decoration: none;">
+                <h5 class="card-title mb-2" style="text-align: left;  font-weight:700">{{x.product_name}}</h5>
+                <p style="text-align: left; font-weight:400">{{x.description}}</p>
+              <h6 class="mb-3 price" style="text-align: left; ">₹{{x.price}}</h6>
+                </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div><br><br>
+      {% endfor %}
+  </section>
+    <section class="detail">
+      <div class="container">
+        <div class="row">
+          <div class="col-4"><br>
+            <img id="shipping" src="{% static 'images/shipping.png' %}">
+            <h5 id="srb">Free Shipping</h5>
+            <h6 id="oro">On orders above ₹499</h6>
+          </div>
+          <div class="col-4"><br>
+          <img id="return" src="{% static 'images/returns.webp' %}">
+          <h5 id="srb">Easy Return</h5>
+          <h6 id="oro">100% Return in 5 Days</h6>
+          </div>
+          <div class="col-4"><br>
+          <img id="brand" src="{% static 'images/brand1.png' %}">
+          <h5 id="srb">700+ Brands</h5>
+          <h6 id="oro">Over 10000+ Genuine Products</h6>
+          </div>
+        </div>
+      </div>
+    </section><br>
+    <section class="secure">
+      <div class="container">
+        <div class="row">
+          <div class="col-4"><br>
+            <img id="payment" src="{% static 'images/secure payment.png' %}">
+            <h3 id="sbh">100% Secure Payment</h3>
+            <h6 id="agt">All Online Payments are Accepted</h6>
+          </div>
+          <div class="col-4"><br>
+            <img id="beauty" src="{% static 'images/beauty assist.png' %}">
+            <h3  id="sbh">Beauty Assistant</h3>
+            <h6 id="agt">Tell me what you are <br> looking for and <br>
+                i will work my magic <br> to help you find your <br>
+                perfect match.</h6>
+          </div>
+          <div class="col-4"><br>
+            <img id="help" src="{% static 'images/help center.png' %}">
+            <h3  id="sbh">Help Center</h3>
+            <h6 id="agt">Got a question? <br>Look no further. <br>
+                Browse FAQs or <br>submit your query.</h6>
+          </div>
+        </div>
+      </div>
+    </section><br>
+    <section class="about">
+      <div class="about-us">
+        <div class="container ">
+          <div class="row">
+            <div class="col">
+              <h5 id="epn" style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold; font-size:Larger;"><br>EVERGLOWY</h5>
+              <h6 id="apf">About us<br>Careers<br>Press<br>Sitemap<br>Compilance</h6>
+            </div>
+            <div class="col">
+              <h5  id="epn"><br>POLICY INFO</h5>
+              <h6 id="apf">Privacy Policy<br>Terms Of Use<br>Return & Cancellation<br>Policy</h6>
+            </div>
+            <div class="col">
+              <h5 id="epn"><br>NEED HELP?</h5>
+              <h6 id="apf">FAQ's<br>Contact Us</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><br>
+    <section class="pay">
+      <div class="pay">
+        <div class="row">
+          <div class="col">
+            <h5 class="payment pl-5">PAYMENT</h5>
+            <img id="pay" src="{% static 'images/Screenshot 2024-01-10 183402.png' %}"><br>
+            <h6 id="net">NET BANKING </h6>
+            <h6 id="cash">₹ CASH ON DELIVERY</h6>
+          </div>
+          <div class="col">
+            <h5>CONNECT</h5>
+            <i class="fa-brands fa-facebook-f margin-10"></i>
+            <i class="fa-brands fa-facebook-messenger  margin-10"></i>
+            <i class="fa-brands fa-instagram  margin-10"></i>
+            <i class="fa-regular fa-envelope  margin-10"></i>
+            <i class="fa-brands fa-whatsapp margin-10"></i>
+            <i class="fa-brands fa-twitter margin-10"></i>
+            <i class="fa-brands fa-youtube margin-10"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="foot">
+      <div class="foots" style="width:100%">
+        <footer class="bg-dark text-light p-1" style="width:100%">
+          <h7 style="text-align: center;width:100%">Copyright ©2024 Everglow.All Rights Reserved.</h7>
+        </footer>
+      </div>
+    </section>
+  </div>
+  </main>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eM5V9sr5ktoJHnUA2zL4agvbQlGyR0L5L2c8c5z+Owai1Uv5UO8JqC2PahvS/Rj" crossorigin="anonymous"></script>
+</body>
+</html>

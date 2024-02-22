@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Profile</title>
+	<link rel="stylesheet" href="{% static '/css/profile.css' %}" text="text/css">
+</head>
+<body>
+
+
+	<header>
+
+		<div class="logosec">
+						<a href="/" style="text-decoration:none;"><div class="logo"  style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">EVERGLOWY</div></a>
+			<img src= "{% static 'images/menu-png-icon-13.png' %}" class="icn menuicn" id="menuicn" alt="menu-icon">
+		</div>
+	</header>
+
+	<div class="main-container">
+		<div class="navcontainer">
+			<nav class="nav">
+				<div class="nav-upper-options">
+					<div class="nav-option option3">
+						<img src= "{% static 'images/Profile-PNG-Image.png' %}" class="nav-img" alt="profile">
+							<a href="profile" style="text-decoration:none; color:black;"><h3> Profile</h3></a>
+					</div>
+
+					<div class="nav-option option1">
+						<img src= "{% static 'images/address-icon-png-5.png' %}" class="nav-img" alt="address">
+							<a href="view_address" style="text-decoration:none; color:black;"><h3> Address</h3></a>
+					</div>
+
+					<div class="option2 nav-option">
+						<img src= "{% static 'images/order-png-image.png' %}" class="nav-img" alt="orders">
+						<h3> Orders</h3>
+					</div>
+
+					<div class="nav-option option3">
+						<img src= "{% static 'images/fav-png-image.png' %}" class="nav-img" alt="fav">
+						<h3> Favourites</h3>
+					</div>
+
+					<div class="nav-option option3">
+						<img src= "{% static 'images/cart png image.png' %}" class="nav-img" alt="fav">
+						<a href="cart" style="font-size: 1.17em;; font-weight:bold;text-decoration:none; color:black;"><h3> Cart</h3></a>
+					</div>
+
+					<div class="nav-option logout">
+						<img src= "{% static 'images/logout-png-image.png' %}" class="nav-img" alt="logout">
+						<a href="logout" style="text-decoration:none;"><h3 style="text-decoration:none; color:black; font-size: 1.17em;; font-weight:bold;"> Logout</h3></a>
+					</div>
+
+				</div>
+			</nav>
+		</div>
+		<div class="main">
+
+			<div class="form">
+				{% for x in data %}
+					<form  method="POST" style="margin-left:30px;">
+						{% csrf_token %}
+                <div class="mb-3" >
+                    <label for="exampleInputName1" class="form-label"></label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="house_name" value="{{x.house_name}}" aria-describedby="nameHelp" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>
+                  </div>
+                <div class="mb-3" style="padding-top:20px;">
+                    <label for="exampleInputNumber1" class="form-label"></label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="house_number" aria-describedby="emailHelp" value="{{x.house_number}}" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>
+                </div>
+                <div class="mb-3" style="padding-top:20px;">
+                    <label for="exampleInputNumber1" class="form-label"></label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="place" aria-describedby="numberHelp" value="{{x.place}}" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>
+                </div>
+                <div class="mb-3" style="padding-top:20px;">
+                    <label for="exampleInputName1" class="form-label"></label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="post" value="{{x.post}}" aria-describedby="nameHelp" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>
+                  </div>
+                <div class="mb-3" style="padding-top:20px;">
+                    <label for="exampleInputNumber1" class="form-label"></label>
+                    <input type="text" class="form-control" id="exampleInputNumber1" name="pin" aria-describedby="emailHelp" value="{{x.pin}}" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>
+                </div>
+                <div class="mb-3" style="padding-top:20px;">
+                    <label for="exampleInputNumber1" class="form-label"></label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="landmark" aria-describedby="numberHelp" value="{{x.landmark}}" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>
+                </div>
+                <div class="mb-3" style="padding-top:20px;">
+                    <label for="exampleInputName1" class="form-label"></label>
+                    <input type="text" class="form-control" id="exampleInputName1" name="city" aria-describedby="emailHelp" value="{{x.city}}" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>
+                </div><br>
+
+                <a href="view_address"><button type="submit" class="btn btn-primary" style="border-radius: 20px; font-size: 15px; margin-left:18%; width:100px; height:30px; background-color:blue; color:white;">EDIT</button></a> <br>
+            </form>
+
+			</div>
+			{% endfor %}
+
+
+		</div>
+	</div>
+
+
+	<script>
+		let menuicn = document.querySelector(".menuicn");
+		let nav = document.querySelector(".navcontainer");
+
+		menuicn.addEventListener("click", () => {
+			nav.classList.toggle("navclose");
+		})
+	</script>
+</body>
+</html>

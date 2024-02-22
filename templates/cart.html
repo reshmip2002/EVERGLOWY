@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cart</title>
+	<link rel="stylesheet" href="{% static '/css/profile.css' %}" text="text/css">
+</head>
+<body>
+	<header>
+		<div class="logosec">
+			<a href="/" style="text-decoration:none;"><div class="logo"  style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">EVERGLOWY</div></a>
+			<img src= "{% static 'images/menu-png-icon-13.png' %}" class="icn menuicn" id="menuicn" alt="menu-icon">
+		</div>
+	</header>
+
+	<div class="main-container">
+		<div class="navcontainer">
+			<nav class="nav">
+				<div class="nav-upper-options">
+					<div class="nav-option option3">
+						<img src= "{% static 'images/Profile-PNG-Image.png' %}" class="nav-img" alt="profile">
+							<a href="profile" style="text-decoration:none; color:black;"><h3> Profile</h3></a>
+					</div>
+
+					<div class="nav-option option3">
+						<img src= "{% static 'images/address-icon-png-5.png' %}" class="nav-img" alt="address">
+							<a href="view_address" style="text-decoration:none; color:black;"><h3> Address</h3></a>
+					</div>
+
+					<div class="option2 nav-option">
+						<img src= "{% static 'images/order-png-image.png' %}" class="nav-img" alt="orders">
+						<a href="orders" style="text-decoration:none; color:black;"><h3> Orders</h3></a>
+					</div>
+
+					<div class="nav-option option3">
+						<img src= "{% static 'images/fav-png-image.png' %}" class="nav-img" alt="fav">
+						<a href="wishlist" style="text-decoration:none; color:black;"><h3> Favourites</h3></a>
+					</div>
+
+					<div class="nav-option option1">
+						<img src= "{% static 'images/cart png image.png' %}" class="nav-img" alt="fav">
+						<a href="cart" style="text-decoration:none; color:black; font-size: 1.17em;; font-weight:bold;"><h3> Cart</h3></a>
+					</div>
+
+					<div class="nav-option logout">
+						<img src= "{% static 'images/logout-png-image.png' %}" class="nav-img" alt="logout">
+						<a href="logout" style="text-decoration:none;"><h3 style="text-decoration:none; color:black; font-size: 1.17em;; font-weight:bold;"> Logout</h3></a>
+					</div>
+
+				</div>
+			</nav>
+		</div>
+		<div class="main">
+            {% if cart %}
+			 <div class="card mb-3" style="max-width: 50%; border-size:3px;">
+
+            <div class="row g-0">
+                {%  for x in cart %}
+              <div class="col-md-4">
+                <img src= "{{ x.product_id.images.first.image.url }}" class="img-fluid rounded-start p-img" height="100px;" width="100px;">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{x.product_id.product_name}}</h5>
+                  <p class="card-text"> {{x.product_id.description}}</p>
+                  <p class="card-text">
+                    <div class="row">
+                        <div class="col-6">₹{{x.product_id.price}}</div>
+                        <div class="col-6">
+                            <form>
+                                Qty:<select id="Qty" name="Qty">{{x.quantity}}
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    </select>
+                            </form>
+                        </div>
+                    </div>
+                  </p>
+                </div>
+                <form >
+                    <a href="/dlt_product/{{x.cart_id}}" class="btn btn-close-white">Remove</a>
+                    <a href="buy"><button type="submit" class="btn btn-success" id="button">Buy Now</button></a>
+                </form>
+              </div>
+                {% endfor %}
+            </div>
+        </div><br>
+			<div class="card mb-3" style="max-width: 100%;">
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title" style="color: rgb(6, 93, 3);">Price Details</h5>
+                <p class="card-text">
+                  <div class="row">
+                      <div class="col-10"> Total MRP</div>
+                      <div class="col-2">{{total_price}}</div>
+                  </div>
+                  <div class="row">
+                      <div class="col-10">Shipping charge</div>
+                      <div class="col-2" style="color: rgb(14, 169, 40);">50</div>
+                  </div>
+                </p>
+                <p class="card-text">
+                  <div class="row">
+                      <div class="col-10"><h5>Order Total</h5></div>
+                      <div class="col-2"><h5>₹800</h5></div>
+                  </div>
+                </p>
+              </div>
+            </div>
+          </div>
+            {% else %}
+            <p>Your Cart Is Empty......<a href="/" style="text-decoration:none; color:blue;">Continue Shopping</a> </p>
+            {% endif %}
+		</div>
+	</div>
+
+	<script>
+		let menuicn = document.querySelector(".menuicn");
+		let nav = document.querySelector(".navcontainer");
+
+		menuicn.addEventListener("click", () => {
+			nav.classList.toggle("navclose");
+		})
+	</script>
+</body>
+</html>
