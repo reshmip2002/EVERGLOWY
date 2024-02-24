@@ -21,14 +21,14 @@ def home_page(request):
         if category_products.exists():
             categorized_products[y.main_category_name] = category_products
     print(data.values())
-    return render(request, 'homepage.html', {'products': data,'cat':cat,'categorized_products':categorized_products})
-
+    return render(request, 'homepage.html',
+                  {'products': data, 'cat': cat, 'categorized_products': categorized_products,'user':request.user})
 
 
 def products(request, id):
     print("dcfvgbhnjm")
     data = Product.objects.select_related('seller_id').prefetch_related('images').filter(product_id=id)
-    datas = ReviewRating.objects.filter(product_id =Product.objects.get(product_id=id))
+    datas = ReviewRating.objects.filter(product_id=Product.objects.get(product_id=id))
     if 'user' in request.session:
         print("sdfghjvbnhj")
         email = request.session.get('user')
@@ -43,7 +43,8 @@ def products(request, id):
             cart_data.user_id = User.objects.get(email=email)
             cart_data.save()
             return redirect('/cart')
-    return render(request, 'single-product.html', {'products': data, 'review': datas})
+    return render(request, 'single-product.html', {'products': data, 'review': datas,'user':request.user})
+
 
 def cart(request):
     print("sdfghj")
@@ -60,13 +61,15 @@ def cart(request):
     else:
         return redirect('/login')
 
+
 def dlt_product(request, cart_id):
     print("rtttttttttttttttttttttttttttttt")
     data = Cart.objects.get(cart_id=cart_id)
     data.delete()
     return redirect('/cart')
 
-def category(request,main_category_id):
+
+def category(request, main_category_id):
     print(main_category_id)
     print("category function")
     data = Category.objects.get(main_category_id=main_category_id)
@@ -85,27 +88,37 @@ def category(request,main_category_id):
             print('qqqqqqq')
             data1 = data1.prefetch_related('images')
 
-    return render(request, 'category.html', {'cat':data1})
-
+    return render(request, 'category.html', {'cat': data1})
 
 
 def search(request):
     print("rrrrrrrrr")
     data = Product.objects.select_related('seller_id').prefetch_related('images').all()
+    brand = Brand.objects.filter()
     cat = Category.objects.all()
+    print(request.method)
+    brand_id = request.GET.get('brand_id')
+    print(brand_id)
+    if brand_id:
+        print('hello')
+        data = Product.objects.filter(brand_id=Brand.objects.get(brand_id=brand_id))
     if request.method == 'POST':
         search = request.POST.get('search')
         if search:
-            data = Product.objects.filter(Q(product_name__icontains=search) | Q(description__icontains=search) | Q(price__icontains=search))
+            data = Product.objects.filter(
+                Q(product_name__icontains=search) | Q(description__icontains=search) | Q(price__icontains=search) | Q(
+                    brand_id__brand_name__icontains=search))
             print(search)
             return render(request, 'search.html', {'products': data})
         return render(request, 'search.html', {'products': data, 'cat': cat})
+    return render(request, 'search.html', {'products': data, 'cat': cat, 'brands': brand})
 
 
 def brand(request):
-    data = Brand.objects.select_related('brand_id').prefetch_related('images').all()
+    data = Brand.objects.all()
+    cat = Category.objects.all()
     print(data.values())
-    return render(request, 'brand.html',{'brand': data})
+    return render(request, 'brand.html', {'datas': data, 'cat': cat})
 
 
 def wishlist(request):
@@ -126,12 +139,10 @@ def dlt_listproduct(request, list_id):
     return redirect('/wishlist')
 
 
+def offers(request):
+    events = Event.objects.all()
+    return render(request, 'offers.html',  {'events': events})
 
-
-def offers(request,event_id):
-    event = Event.objects.get(id=event_id)
-    offer = Offer.objects.get(id=event_id)
-    return render(request, 'offer.html', {'offer': offer,'event': event})
 
 def reviewrating(request):
     if request.method == 'POST':
@@ -146,6 +157,7 @@ def reviewrating(request):
         print("Review successfully  added.............!")
         return redirect('product/{id}')
     return render(request, 'reviewrating.html')
+
 
 def signup(request):
     if request.method == "POST":
@@ -273,6 +285,7 @@ def dlt_address(request, house_id):
     data = UserAddress.objects.get(house_id=house_id)
     data.delete()
     return redirect('view_address')
+
 
 def logout(request):
     del request.session['user']

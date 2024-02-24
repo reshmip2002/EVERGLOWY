@@ -56,6 +56,7 @@ class LocationCity(models.Model):
 class Event(models.Model):
     event_id = models.IntegerField(primary_key=True, default=None)
     event_name = models.CharField(max_length=50, null=True)
+    image = models.ImageField(upload_to='images/',null=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
 
