@@ -705,7 +705,7 @@ border-radius: 4px;
                                                     </div>
                                                     <form style="margin-left:15px;">
                                                         {% csrf_token %}
-                                                        <a href="/dlt_product/{{x.cart_id}}" class="btn btn-close-white">Remove</a>
+                                                        <a href="/dlt_product/{{x.cart_id}}" class="btn btn-outline-white" style="text-decoration:none; color:black">Remove</a>
                                                         <a href="buy"><button type="submit" class="btn btn-success" id="button">Buy Now</button></a>
                                                     </form>
                                                 </div>
@@ -717,7 +717,7 @@ border-radius: 4px;
                                 </div>
                             </div>
                         </div>
-                                <div class="col-md-4 ">
+                        <div class="col-md-4 ">
                             <div class="summary">
                                 <h3>Price Details</h3>
                                 <div class="summary-item"><span class="text">Shipping Charge:</span><span class="price">₹</span></div>
