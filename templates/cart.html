@@ -6,7 +6,612 @@
 	<meta http-equiv="X-UA-Compatible"content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cart</title>
-	<link rel="stylesheet" href="{% static '/css/profile.css' %}" text="text/css">
+	<style>
+
+@import url(
+"https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: "Poppins", sans-serif;
+}
+:root {
+--background-color1: #fafaff;
+--background-color2: #ffffff;
+--background-color3: #ededed;
+--background-color4: #cad7fda4;
+--primary-color: #4b49ac;
+--secondary-color: #0c007d;
+--Border-color: #3f0097;
+--one-use-color: #3f0097;
+--two-use-color: #5500cb;
+}
+body {
+background-color: var(--background-color4);
+max-width: 100%;
+overflow-x: hidden;
+}
+
+header {
+height: 70px;
+width: 100vw;
+padding: 0 30px;
+background-color: var(--background-color1);
+position: fixed;
+z-index: 100;
+box-shadow: 1px 1px 15px rgba(161, 182, 253, 0.825);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.logo {
+font-size: 27px;
+font-weight: 600;
+color: rgb(47, 141, 70);
+}
+
+.icn {
+height: 30px;
+}
+.menuicn {
+cursor: pointer;
+}
+
+.searchbar,
+.message,
+.logosec {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.searchbar2 {
+display: none;
+}
+
+.logosec {
+gap: 60px;
+}
+
+.message {
+gap: 40px;
+position: relative;
+cursor: pointer;
+}
+.circle {
+height: 7px;
+width: 7px;
+position: absolute;
+background-color: #fa7bb4;
+border-radius: 50%;
+left: 19px;
+top: 8px;
+}
+.dp {
+height: 40px;
+width: 40px;
+background-color: #626262;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+.main-container {
+display: flex;
+width: 100vw;
+position: relative;
+top: 70px;
+z-index: 1;
+}
+.dpicn {
+height: 42px;
+}
+
+.main {
+height: calc(100vh - 70px);
+width: 100%;
+overflow-y: scroll;
+overflow-x: hidden;
+padding: 40px 30px 30px 30px;
+}
+
+.main::-webkit-scrollbar-thumb {
+background-image:
+		linear-gradient(to bottom, rgb(0, 0, 85), rgb(0, 0, 50));
+}
+.main::-webkit-scrollbar {
+width: 5px;
+}
+.main::-webkit-scrollbar-track {
+background-color: #9e9e9eb2;
+}
+
+.box-container {
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+flex-wrap: wrap;
+gap: 50px;
+}
+.nav {
+min-height: 91vh;
+width: 250px;
+background-color: var(--background-color2);
+position: absolute;
+top: 0px;
+left: 00;
+box-shadow: 1px 1px 10px rgba(198, 189, 248, 0.825);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+overflow: hidden;
+padding: 30px 0 20px 10px;
+}
+.navcontainer {
+height: calc(100vh - 70px);
+width: 250px;
+position: relative;
+overflow-y: scroll;
+overflow-x: hidden;
+transition: all 0.5s ease-in-out;
+}
+.navcontainer::-webkit-scrollbar {
+display: none;
+}
+.navclose {
+width: 80px;
+}
+.nav-option {
+width: 250px;
+height: 60px;
+display: flex;
+align-items: center;
+padding: 0 30px 0 20px;
+gap: 20px;
+transition: all 0.1s ease-in-out;
+}
+.nav-option:hover {
+border-left: 5px solid #a2a2a2;
+background-color: #dadada;
+cursor: pointer;
+}
+.nav-img {
+height: 30px;
+}
+
+.nav-upper-options {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 30px;
+}
+
+.option1 {
+border-left: 5px solid #010058af;
+background-color: var(--Border-color);
+color: white;
+cursor: pointer;
+}
+.option1:hover {
+border-left: 5px solid #010058af;
+background-color: var(--Border-color);
+}
+.box {
+height: 130px;
+width: 230px;
+border-radius: 20px;
+box-shadow: 3px 3px 10px rgba(0, 30, 87, 0.751);
+padding: 20px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+cursor: pointer;
+transition: transform 0.3s ease-in-out;
+}
+.box:hover {
+transform: scale(1.08);
+}
+
+.box:nth-child(1) {
+background-color: var(--one-use-color);
+}
+.box:nth-child(2) {
+background-color: var(--two-use-color);
+}
+.box:nth-child(3) {
+background-color: var(--one-use-color);
+}
+.box:nth-child(4) {
+background-color: var(--two-use-color);
+}
+
+.box img {
+height: 50px;
+}
+.box .text {
+color: white;
+}
+.topic {
+font-size: 13px;
+font-weight: 400;
+letter-spacing: 1px;
+}
+
+.topic-heading {
+font-size: 30px;
+letter-spacing: 3px;
+}
+
+.report-container {
+min-height: 300px;
+max-width: 1200px;
+margin: 70px auto 0px auto;
+background-color: #ffffff;
+border-radius: 30px;
+box-shadow: 3px 3px 10px rgb(188, 188, 188);
+padding: 0px 20px 20px 20px;
+}
+.report-header {
+height: 80px;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 20px 20px 10px 20px;
+border-bottom: 2px solid rgba(0, 20, 151, 0.59);
+}
+
+.recent-Articles {
+font-size: 30px;
+font-weight: 600;
+color: #5500cb;
+}
+
+.view {
+height: 35px;
+width: 90px;
+border-radius: 8px;
+background-color: #5500cb;
+color: white;
+font-size: 15px;
+border: none;
+cursor: pointer;
+}
+
+.report-body {
+max-width: 1160px;
+overflow-x: auto;
+padding: 20px;
+}
+.report-topic-heading,
+.item1 {
+width: 1120px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.t-op {
+font-size: 18px;
+letter-spacing: 0px;
+}
+
+.items {
+width: 1120px;
+margin-top: 15px;
+}
+
+.item1 {
+margin-top: 20px;
+}
+.t-op-nextlvl {
+font-size: 14px;
+letter-spacing: 0px;
+font-weight: 600;
+}
+
+.label-tag {
+width: 100px;
+text-align: center;
+background-color: rgb(0, 177, 0);
+color: white;
+border-radius: 4px;
+}
+
+/* Responsive CSS Here */
+@media screen and (max-width: 950px) {
+    .nav-img {
+        height: 25px;
+    }
+    .nav-option {
+        gap: 30px;
+    }
+    .nav-option h3 {
+        font-size: 15px;
+    }
+    .report-topic-heading,
+    .item1,
+    .items {
+        width: 800px;
+    }
+    }
+
+    @media screen and (max-width: 850px) {
+    .nav-img {
+        height: 30px;
+    }
+    .nav-option {
+        gap: 30px;
+    }
+    .nav-option h3 {
+        font-size: 20px;
+    }
+    .report-topic-heading,
+    .item1,
+    .items {
+        width: 700px;
+    }
+    .navcontainer {
+        width: 100vw;
+        position: absolute;
+        transition: all 0.6s ease-in-out;
+        top: 0;
+        left: -100vw;
+    }
+    .nav {
+        width: 100%;
+        position: absolute;
+    }
+    .navclose {
+        left: 00px;
+    }
+    .searchbar {
+        display: none;
+    }
+    .main {
+        padding: 40px 30px 30px 30px;
+    }
+    .searchbar2 {
+        width: 100%;
+        display: flex;
+        margin: 0 0 40px 0;
+        justify-content: center;
+    }
+    .searchbar2 input {
+        width: 250px;
+        height: 42px;
+        border-radius: 50px 0 0 50px;
+        background-color: var(--background-color3);
+        padding: 0 20px;
+        font-size: 15px;
+        border: 2px solid var(--secondary-color);
+    }
+    }
+
+    @media screen and (max-width: 490px) {
+    .message {
+        display: none;
+    }
+    .logosec {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .logo {
+        font-size: 20px;
+    }
+    .menuicn {
+        height: 25px;
+    }
+    .nav-img {
+        height: 25px;
+    }
+    .nav-option {
+        gap: 25px;
+    }
+    .nav-option h3 {
+        font-size: 12px;
+    }
+    .nav-upper-options {
+        gap: 15px;
+    }
+    .recent-Articles {
+        font-size: 20px;
+    }
+    .report-topic-heading,
+    .item1,
+    .items {
+        width: 550px;
+    }
+    }
+
+    @media screen and (max-width: 400px) {
+    .recent-Articles {
+        font-size: 17px;
+    }
+    .view {
+        width: 60px;
+        font-size: 10px;
+        height: 27px;
+    }
+    .report-header {
+        height: 60px;
+        padding: 10px 10px 5px 10px;
+    }
+    .searchbtn img {
+        height: 20px;
+    }
+    }
+
+    @media screen and (max-width: 320px) {
+    .recent-Articles {
+        font-size: 12px;
+    }
+    .view {
+        width: 50px;
+        font-size: 8px;
+        height: 27px;
+    }
+    .report-header {
+        height: 60px;
+        padding: 10px 5px 5px 5px;
+    }
+    .t-op {
+        font-size: 12px;
+    }
+    .t-op-nextlvl {
+        font-size: 10px;
+    }
+    .report-topic-heading,
+    .item1,
+    .items {
+        width: 300px;
+    }
+    .report-body {
+        padding: 10px;
+    }
+    .label-tag {
+        width: 70px;
+    }
+
+    }
+
+        .shopping-cart{
+            padding-bottom: 50px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .shopping-cart.dark{
+            background-color: #f6f6f6;
+        }
+
+        .shopping-cart .content{
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+            background-color: #f6f6f6;
+        }
+
+        .shopping-cart .block-heading{
+            padding-top: 50px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .shopping-cart .block-heading p{
+            text-align: center;
+            max-width: 420px;
+            margin: auto;
+            opacity:0.7;
+        }
+
+        .shopping-cart .dark .block-heading p{
+            opacity:0.8;
+        }
+
+        .shopping-cart .block-heading h1,
+        .shopping-cart .block-heading h2,
+        .shopping-cart .block-heading h3 {
+            margin-bottom:1.2rem;
+            color: #3b99e0;
+        }
+
+        .shopping-cart .items{
+            margin: auto;
+        }
+
+        .shopping-cart .items .product{
+            margin-bottom: 20px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .shopping-cart .items .product .info{
+            padding-top: 0px;
+            text-align: center;
+        }
+
+        .shopping-cart .items .product .info .product-name{
+            font-weight: 600;
+        }
+
+        .shopping-cart .items .product .info .product-name .product-info{
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .shopping-cart .items .product .info .product-name .product-info .value{
+            font-weight: 400;
+        }
+
+        .shopping-cart .items .product .info .quantity .quantity-input{
+            margin: auto;
+            width: 80px;
+        }
+
+        .shopping-cart .items .product .info .price{
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 22px;
+         }
+
+        .shopping-cart .summary{
+            border-top: 2px solid #5ea4f3;
+            background-color: #f6f6f6;
+            height: 100%;
+            padding: 30px;
+        }
+
+        .shopping-cart .summary h3{
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 600;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .shopping-cart .summary .summary-item:not(:last-of-type){
+            padding-bottom: 10px;
+            padding-top: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .shopping-cart .summary .text{
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .shopping-cart .summary .price{
+            font-size: 1em;
+            float: right;
+        }
+
+        .shopping-cart .summary button{
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .shopping-cart .items .product .info {
+                padding-top: 25px;
+                text-align: left;
+            }
+
+            .shopping-cart .items .product .info .price {
+                font-weight: bold;
+                font-size: 22px;
+                top: 17px;
+            }
+
+            .shopping-cart .items .product .info .quantity {
+                text-align: center;
+            }
+            .shopping-cart .items .product .info .quantity .quantity-input {
+                padding: 4px 10px;
+                text-align: center;
+            }
+        }
+
+    </style>
 </head>
 <body>
 	<header>
@@ -53,75 +658,78 @@
 				</div>
 			</nav>
 		</div>
-		<div class="main">
-            {% if cart %}
-			 <div class="card mb-3" style="max-width: 50%; border-size:3px;">
-
-            <div class="row g-0">
-                {%  for x in cart %}
-              <div class="col-md-4">
-                <img src= "{{ x.product_id.images.first.image.url }}" class="img-fluid rounded-start p-img" height="100px;" width="100px;">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">{{x.product_id.product_name}}</h5>
-                  <p class="card-text"> {{x.product_id.description}}</p>
-                  <p class="card-text">
+        <main class="page">
+        <section class="shopping-cart dark" style="margin-left:2px;">
+            <div class="container">
+                <div class="content">
+                    {% if cart %}
                     <div class="row">
-                        <div class="col-6">₹{{x.product_id.price}}</div>
-                        <div class="col-6">
-                            <form>
-                                Qty:<select id="Qty" name="Qty">{{x.quantity}}
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    </select>
-                            </form>
+                        <div class="col-md-8">
+                            <div class="items">
+                                <div class="product">
+                                    {%  for x in cart %}
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img style="margin-left:15px;" src= "{{ x.product_id.images.first.image.url }}" class="img-fluid rounded-start p-img" height="100px;" width="100px;">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="col-md-5 product-name">
+                                                        <div class="product-name">
+
+                                                            <div class="product-info">
+                                                                <h5 style="margin-left:15px;">{{x.product_id.product_name}} </h5>
+                                                                <div style="margin-left:15px;">{{x.product_id.description}}  </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 quantity">
+                                                        <form>
+                                                            {% csrf_token %}
+                                                            Qty:<select id="Qty" name="Qty">{{x.quantity}}
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                </select>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-md-3 price" style="margin-left:15px;">
+                                                        <span>₹{{x.product_id.price}}</span>
+                                                    </div>
+                                                    <form style="margin-left:15px;">
+                                                        {% csrf_token %}
+                                                        <a href="/dlt_product/{{x.cart_id}}" class="btn btn-close-white">Remove</a>
+                                                        <a href="buy"><button type="submit" class="btn btn-success" id="button">Buy Now</button></a>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                                <div class="col-md-4 ">
+                            <div class="summary">
+                                <h3>Price Details</h3>
+                                <div class="summary-item"><span class="text">Shipping Charge:</span><span class="price">₹</span></div>
+                                <div class="summary-item"><span class="text">TOTAL MRP:</span><span class="price">₹{{total_price}</span></div>
+                                <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                            </div>
                         </div>
                     </div>
-                  </p>
                 </div>
-                <form >
-                    <a href="/dlt_product/{{x.cart_id}}" class="btn btn-close-white">Remove</a>
-                    <a href="buy"><button type="submit" class="btn btn-success" id="button">Buy Now</button></a>
-                </form>
-              </div>
-                {% endfor %}
             </div>
-        </div><br>
-			<div class="card mb-3" style="max-width: 100%;">
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title" style="color: rgb(6, 93, 3);">Price Details</h5>
-                <p class="card-text">
-                  <div class="row">
-                      <div class="col-10"> Total MRP</div>
-                      <div class="col-2">{{total_price}}</div>
-                  </div>
-                  <div class="row">
-                      <div class="col-10">Shipping charge</div>
-                      <div class="col-2" style="color: rgb(14, 169, 40);">50</div>
-                  </div>
-                </p>
-                <p class="card-text">
-                  <div class="row">
-                      <div class="col-10"><h5>Order Total</h5></div>
-                      <div class="col-2"><h5>₹800</h5></div>
-                  </div>
-                </p>
-              </div>
-            </div>
-          </div>
-            {% else %}
-            <p>Your Cart Is Empty......<a href="/" style="text-decoration:none; color:blue;">Continue Shopping</a> </p>
-            {% endif %}
-		</div>
+        </section>
+    </main>
 	</div>
 
 	<script>

@@ -90,11 +90,12 @@
             <li><a href="cart"><i class="fa-solid fa-cart-shopping margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
             <li><a href="profile"><i class="fa-solid fa-user margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
             <li>
-              <form class="d-flex" id="form">
-                <button class="btn btn-outline-success login" type="login" text="Login" >
-                  <a href="{% url 'login' %}" style="color: black;">Login</a>
-                </button>
-            </form>
+              {% if user == 'no user' %}
+                  <a href="{% url 'login' %}"  class="btn btn-success" style="color: black;">Login</a>
+                  {% else %}
+                 <h6>{{user.user_name}}</h6>
+                  <a href="/logout" class="btn btn-outline-success" style="color: black;">Logout</a>
+              {% endif %}
             </li>
               </ul>
             </div>
@@ -130,7 +131,8 @@
                 <p style="text-align: left; font-weight:400">{{offer.product_id.description}}</p>
               <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a class="btn btn-sm btn-outline-success" href="/products/{{offer.product_id}}">View Details</a>
+                    <a class="btn btn-sm btn-outline-success" href="/products/{{offer.
+                    product_id}}">View Details</a>
                   </div>
                   <small class="text-muted">{{ offer.discount }}</small>
                 </div>

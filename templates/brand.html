@@ -48,11 +48,12 @@
             <li><a href="cart"><i class="fa-solid fa-cart-shopping margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
             <li><a href="profile"><i class="fa-solid fa-user margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
             <li>
-              <form class="d-flex" id="form">
-                <button class="btn btn-outline-success login" type="login" text="Login" >
-                  <a href="{% url 'login' %}" style="color: black;">Login</a>
-                </button>
-            </form>
+              {% if user == 'no user' %}
+                  <a href="{% url 'login' %}"  class="btn btn-success" style="color: black;">Login</a>
+                  {% else %}
+                 <h6>{{user.user_name}}</h6>
+                  <a href="/logout" style="color: black;" class="btn btn-outline-success">Logout</a>
+              {% endif %}
             </li>
               </ul>
             </div>

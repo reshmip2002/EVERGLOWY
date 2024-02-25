@@ -21,8 +21,12 @@ def home_page(request):
         if category_products.exists():
             categorized_products[y.main_category_name] = category_products
     print(data.values())
-    return render(request, 'homepage.html',
-                  {'products': data, 'cat': cat, 'categorized_products': categorized_products,'user':request.user})
+    users='no user'
+    if 'user' in request.session:
+        current_user = request.session['user']
+        users=User.objects.get(email=current_user)
+
+    return render(request, 'homepage.html',{'products': data,'user':users, 'cat': cat, 'categorized_products': categorized_products})
 
 
 def products(request, id):
@@ -43,7 +47,7 @@ def products(request, id):
             cart_data.user_id = User.objects.get(email=email)
             cart_data.save()
             return redirect('/cart')
-    return render(request, 'single-product.html', {'products': data, 'review': datas,'user':request.user})
+    return render(request, 'single-product.html', {'products': data, 'review': data})
 
 
 def cart(request):

@@ -167,7 +167,7 @@
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
-            <a class="navbar-brand margin-20" href="/"  style="margin-left: 0.1%;"><h1 style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">EVERGLOWY {user.user_name}</h1></a>
+            <a class="navbar-brand margin-20" href="/"  style="margin-left: 0.1%;"><h1 style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">EVERGLOWY </h1></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -203,11 +203,12 @@
             <li><a href="cart"><i class="fa-solid fa-cart-shopping margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
             <li><a href="profile"><i class="fa-solid fa-user margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
             <li>
-              <form class="d-flex" id="form">
-                <button class="btn btn-outline-success login" type="login" text="Login" >
-                  <a href="{% url 'login' %}" style="color: black;">Login</a>
-                </button>
-            </form>
+              {% if user == 'no user' %}
+                  <a href="{% url 'login' %}"  class="btn btn-success" style="color: black;">Login</a>
+                  {% else %}
+                 <h6>{{user.user_name}}</h6>
+                  <a href="/logout" style="color: black;" class="btn btn-outline-success">Logout</a>
+              {% endif %}
             </li>
               </ul>
             </div>
@@ -340,14 +341,15 @@
 
         </div>
         <div class="reviewrating">
-            <h4 style="text-align:center; font-style:bold;">Review & Rating</h4>
-<!--            <form method="POST" >-->
-<!--                {% csrf_token %}-->
-<!--                <input type="text" name="review" placeholder="Enter ur review.......">-->
-<!--                <button type="submit" class="btn btn-primary">Review</button>-->
-<!--            </form>-->
-            <a href="/reviewrating"><button style="color:black; background-color:sandybrown; width:250px; height:30px; text-align:center; margin-left:40%;" type="submit">Send Your Reviews and Ratings</button></a>
-        </div>
+            <h4 style="text-align:center; font-style:bold;">Review & Rating</h4><br>
+
+            <form method="POST" style="margin-left:30%;">
+                {% csrf_token %}
+                <input type="text" name="review" placeholder="Enter ur review......." style="width:500px; text-align:center;">
+                <button type="submit" class="btn btn-primary">Review</button>
+            </form>
+<!--            <a href="/reviewrating"><button style="color:black; background-color:sandybrown; width:250px; height:30px; text-align:center; margin-left:40%;" type="submit">Send Your Reviews and Ratings</button></a>-->
+        </div><br>
         {% for x in review %}
         <div class="card" style="width: 28rem;margin-left:40px;">
           <div class="card-body">
