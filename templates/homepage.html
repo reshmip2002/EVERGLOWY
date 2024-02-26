@@ -40,8 +40,8 @@
                 <li class="nav-item margin-20"><div class=".search-container">
               <form method="POST" action="/search">
                 {% csrf_token %}
-              <input type="text" placeholder="Search.." name="search" style="border-color:green;">
-              <button type="submit" class="btn btn-close-black" style="height:38px; border-color:green; border-radius:0;"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <input type="text" placeholder="Search.." name="search" style="border-color:blue;">
+              <button type="submit" class="btn btn-close-black" style="height:38px; border-color:blue; border-radius:0;"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form></div>
                 </li>
             <li><a href="wishlist"><i class="fa-solid fa-heart margin-20" style="font-size: larger; color: red;   padding-top: 10px;"></i></a></li>
@@ -49,9 +49,9 @@
             <li><a href="profile"><i class="fa-solid fa-user margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
             <li>
               {% if user == 'no user' %}
-                  <a href="{% url 'login' %}"  class="btn btn-success" style="color: black;">Login</a>
+                  <a href="{% url 'login' %}"  class="btn btn-info" style="color: black;">Login</a>
                   {% else %}
-                  <a href="/logout" class="btn btn-outline-success" style="color: black;">Logout</a>
+                  <a href="/logout" class="btn btn-outline-info" style="color: black;">Logout</a>
                   <h6>{{user.user_name}}</h6>
               {% endif %}
             </li>

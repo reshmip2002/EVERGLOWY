@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>seller homepage</title>
+	<link rel="stylesheet" href="{% static '/css/profile.css' %}" text="text/css">
+</head>
+<body>
+
+
+	<header>
+
+		<div class="logosec">
+			<div class="logo">EVERGLOWY</div>
+			<img src= "{% static 'images/menu-png-icon-13.png' %}" class="icn menuicn" id="menuicn" alt="menu-icon">
+		</div>
+	</header>
+
+	<div class="main-container">
+		<div class="navcontainer">
+			<nav class="nav">
+				<div class="nav-upper-options">
+					<div class="nav-option option1">
+						<img src= "{% static 'images/Profile-PNG-Image.png' %}" class="nav-img" alt="profile">
+							<a href="profile" style="text-decoration:none; color:black;"><h3> Profile</h3></a>
+					</div>
+
+					<div class="nav-option option3">
+						<img src= "{% static 'images/address-icon-png-5.png' %}" class="nav-img" alt="address">
+							<a href="view_product" style="text-decoration:none; color:black;"><h3> Product</h3></a>
+					</div>
+
+					<div class="option2 nav-option">
+						<img src= "{% static 'images/order-png-image.png' %}" class="nav-img" alt="orders">
+						<a href="seller_orders" style="text-decoration:none;color:black;"><h3>Orders</h3></a>
+					</div>
+
+					<div class="nav-option logout">
+						<img src= "{% static 'images/logout-png-image.png' %}" class="nav-img" alt="logout">
+						<a href="seller_logout" style="text-decoration:none;color:black;"><h3>Logout</h3></a>
+					</div>
+
+				</div>
+			</nav>
+		</div>
+		<div class="main">
+			<div class="box-container">
+
+                <div class="box box2">
+                    <div class="text">
+                        <h2 class="topic-heading">150</h2>
+                        <h2 class="topic">Likes</h2>
+                    </div>
+
+                    <img src= "#" alt="likes">
+                </div>
+                <div class="box box2">
+                    <div class="text">
+                        <h2 class="topic-heading">150</h2>
+                        <h2 class="topic">Likes</h2>
+                    </div>
+
+                    <img src= "#" alt="likes">
+                </div>
+                <div class="box box2">
+                    <div class="text">
+                        <h2 class="topic-heading">150</h2>
+                        <h2 class="topic">Likes</h2>
+                    </div>
+
+                    <img src= "#" alt="likes">
+                </div>
+                <div class="box box2">
+                    <div class="text">
+                        <h2 class="topic-heading">150</h2>
+                        <h2 class="topic">Likes</h2>
+                    </div>
+
+                    <img src= "#" alt="likes">
+                </div>
+
+
+            </div>
+		</div>
+	</div>
+
+	<script>
+		let menuicn = document.querySelector(".menuicn");
+		let nav = document.querySelector(".navcontainer");
+
+		menuicn.addEventListener("click", () => {
+			nav.classList.toggle("navclose");
+		})
+	</script>
+</body>
+</html>

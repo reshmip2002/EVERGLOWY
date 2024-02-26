@@ -171,7 +171,7 @@ def signup(request):
         password = request.POST.get('password')
         print(username, email, phone_number, password)
         if User.objects.filter(email=email).exists():
-            return render(request, 'user-signup.html', {'error_message': 'invalid'})
+            return render(request, 'signup.html', {'error_message': 'invalid'})
         else:
             data = User(user_name=username, email=email, phone_number=phone_number, password=password)
             data.save()
