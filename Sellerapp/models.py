@@ -66,7 +66,7 @@ class Product(models.Model):
     product_id = models.IntegerField(primary_key=True, default=None)
     product_name = models.CharField(max_length=200, null=True)
     description = models.CharField(max_length=200, null=True)
-    price = models.CharField(max_length=20, null=True)
+    price = models.IntegerField(null=True)
     expiry_date = models.DateField()
     quantity = models.CharField(max_length=20, null=True)
     seller_id = models.ForeignKey(Seller, on_delete=models.CASCADE)

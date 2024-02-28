@@ -21,12 +21,13 @@ def home_page(request):
         if category_products.exists():
             categorized_products[y.main_category_name] = category_products
     print(data.values())
-    users='no user'
+    users = 'no user'
     if 'user' in request.session:
         current_user = request.session['user']
-        users=User.objects.get(email=current_user)
+        users = User.objects.get(email=current_user)
 
-    return render(request, 'homepage.html',{'products': data,'user':users, 'cat': cat, 'categorized_products': categorized_products})
+    return render(request, 'homepage.html',
+                  {'products': data, 'user': users, 'cat': cat, 'categorized_products': categorized_products})
 
 
 def products(request, id):
@@ -77,44 +78,51 @@ def category(request, main_category_id):
     print(main_category_id)
     print("category function")
     data = Category.objects.get(main_category_id=main_category_id)
+    data1 = Product.objects.select_related('seller_id').prefetch_related('images').all()
     print(data)
     data1 = Product.objects.filter(main_category_id=data)
+    cat = Category.objects.all()
     print(data1.values())
     if request.method == 'POST':
-        sort_price = request.POST.get('sort_price')
-        sort_discount = request.POST.get('sort_discount')
-        sort_relevance = request.POST.get('sort_relevance')
-        if sort_price == 'low_to_high':
-            data1 = data1.order_by('price')
-        elif sort_price == 'high_to_low':
-            data1 = data1.order_by('-price')
-        elif sort_relevance:
-            print('qqqqqqq')
-            data1 = data1.prefetch_related('images')
-
-    return render(request, 'category.html', {'cat': data1})
+        search = request.POST.get('search')
+        if 'selected_price' in request.POST:
+            print(int(request.POST['selected_price']))
+            data1 = data1.filter(price__lt=int(request.POST['selected_price']))
+        if 'selected_discount' in request.POST:
+            print(int(request.POST['selected_discount']))
+            data1 = data1.filter(offer__discount__lt=int(request.POST['selected_discount']))
+        data1 = data1.prefetch_related('images')
+        print(data1.values())
+    return render(request, 'category.html', {'category': data1, 'cat': cat, 'products': data, })
 
 
 def search(request):
     print("rrrrrrrrr")
     data = Product.objects.select_related('seller_id').prefetch_related('images').all()
     brand = Brand.objects.filter()
+    offer = Offer.objects.all()
     cat = Category.objects.all()
     print(request.method)
     brand_id = request.GET.get('brand_id')
     print(brand_id)
+    offer_id = request.GET.get('offer_id')
+    print(offer_id)
+    search = ''
     if brand_id:
         print('hello')
         data = Product.objects.filter(brand_id=Brand.objects.get(brand_id=brand_id))
+        offers = Product.objects.filter(offer_id=Offer.objects.get(offer_id=offer_id))
     if request.method == 'POST':
         search = request.POST.get('search')
-        if search:
-            data = Product.objects.filter(
-                Q(product_name__icontains=search) | Q(description__icontains=search) | Q(price__icontains=search) | Q(
-                    brand_id__brand_name__icontains=search))
-            print(search)
-            return render(request, 'search.html', {'products': data})
-        return render(request, 'search.html', {'products': data, 'cat': cat})
+        if 'selected_price' in request.POST:
+            print(int(request.POST['selected_price']))
+            data = data.filter(price__lt=int(request.POST['selected_price']))
+        if 'selected_discount' in request.POST:
+            print(int(request.POST['selected_discount']))
+            data = data.filter(offer__discount__lt=int(request.POST['selected_discount']))
+            data = data.prefetch_related('images')
+            print(data.values())
+        return render(request, 'search.html', {'products': data, 'search': search, 'cat': cat, })
     return render(request, 'search.html', {'products': data, 'cat': cat, 'brands': brand})
 
 
@@ -145,7 +153,8 @@ def dlt_listproduct(request, list_id):
 
 def offers(request):
     events = Event.objects.all()
-    return render(request, 'offers.html',  {'events': events})
+    cat = Category.objects.all()
+    return render(request, 'offers.html', {'events': events, 'cat': cat})
 
 
 def reviewrating(request):
@@ -210,9 +219,7 @@ def profile(request):
 
 def view_address(request):
     print('address Function called')
-
     if 'user' in request.session:
-        # user = request.session['user ']
         data = UserAddress.objects.filter(user_id=User.objects.get(email=request.session['user']))
         return render(request, 'view_address.html', {'data': data})
     else:
@@ -289,6 +296,18 @@ def dlt_address(request, house_id):
     data = UserAddress.objects.get(house_id=house_id)
     data.delete()
     return redirect('view_address')
+
+
+def buy(request, house_id=None):
+    print("xxxxxxxxxxx")
+    if 'user' in request.session:
+        email = request.session.get('user')
+        if request.method == 'POST':
+            address = UserAddress.objects.filter(house_id=house_id)
+            print(address.values())
+        return render(request, 'buynow.html')
+    else:
+        return redirect('/login')
 
 
 def logout(request):

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Seller
-from Sellerapp.models import *
+from . models import Seller
+from Sellerapp . models import *
 from django.template import loader
 
 # Create your views here.
@@ -83,12 +83,34 @@ def seller_editproduct(request,product_id):
         return redirect('/seller_home')
     else:
         data = Product.objects.filter(product_id=product_id)
-        return render(request,'seller-addproduct.html')
+        return render(request,'seller-editproduct.html')
 
-def delete_product(request, product_id):
+def seller_deleteproduct(request, product_id):
     data = Product.objects.get(product_id=product_id)
     data.delete()
     return redirect('/seller_home')
+
+def seller_add_image(request, product_id):
+    if request.method == 'POST':
+        data = Product.objects.get(product_id=product_id)
+        image = request.FILES.get('image')
+        data.image = image
+        data.save()
+        return redirect('/seller_home')
+    else:
+        return render(request,'seller-addproduct.html')
+
+def seller_edit_image(request,product_id):
+    if request.method == 'POST':
+        data = Product.objects.get(product_id=product_id)
+        image = request.FILES.get('image')
+        data.image = image
+        data.save()
+        return redirect('/seller_home')
+    else:
+        data = Product.objects.filter(product_id=product_id)
+        return render(request,'seller-editproduct.html')
+
 
 
 def seller_logout(request):
