@@ -31,7 +31,6 @@ class Category(models.Model):
     main_category_id = models.IntegerField(primary_key=True, default=None)
     main_category_name = models.CharField(max_length=50, null=True)
 
-
     def __str__(self):
         return self.main_category_name
 
@@ -63,7 +62,7 @@ class SubSubCategory(models.Model):
         db_table = "Sub2category_table"
 
 class Product(models.Model):
-    product_id = models.IntegerField(primary_key=True, default=None)
+    product_id = models.AutoField(primary_key=True, default=None)
     product_name = models.CharField(max_length=200, null=True)
     description = models.CharField(max_length=200, null=True)
     price = models.IntegerField(null=True)

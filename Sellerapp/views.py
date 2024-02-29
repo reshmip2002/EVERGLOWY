@@ -14,7 +14,7 @@ def seller_login(request):
         if datas:
             request.session['seller_id'] = email
             print('login successfully...!')
-            return redirect('/seller_home')
+            return redirect('/seller')
 
         else:
             return HttpResponse('Please enter a valid email id')
@@ -38,14 +38,18 @@ def seller_signup(request):
         data.license_number = license_number
         data.password = password
         data.save()
-        return redirect('/seller_login')
+        return redirect('/seller/seller_login')
     else:
         return render(request,'seller-signup.html')
 
 def seller_home(request):
-    data = Seller.objects.all()
-    print(data.values())
-    return render(request,'seller-home.html')
+    if 'seller_id' in request.session:
+        data = request.session['seller_id']
+        data1 = Seller.objects.filter(email=data)
+        print(data1.values())
+        return render(request, 'seller-home.html', {'data': data1})
+    else:
+        return redirect('/seller/seller_login')
 
 
 def seller_addproduct(request):
@@ -62,7 +66,7 @@ def seller_addproduct(request):
         data.brand_id = request.POST.get('brand_id')
         data.save()
         print("product add successfully...........")
-        return redirect('/seller_home')
+        return redirect('/seller')
     else:
         return render(request,'seller-addproduct.html')
 
@@ -80,15 +84,23 @@ def seller_editproduct(request,product_id):
         data.brand_id = request.POST.get('brand_id')
         data.save()
         print("product add successfully...........")
-        return redirect('/seller_home')
+        return redirect('/seller')
     else:
         data = Product.objects.filter(product_id=product_id)
-        return render(request,'seller-editproduct.html')
+        return render(request, 'seller-editproduct.html', {'data': data})
+
+def seller_viewproduct(request):
+    print('Product Function called')
+    if 'seller_id' in request.session:
+        data = Product.objects.filter(seller_id=Seller.objects.get(email=request.session['seller_id']))
+        return render(request, 'seller-viewproduct.html', {'data': data})
+    else:
+        return redirect('/seller/seller_login')
 
 def seller_deleteproduct(request, product_id):
     data = Product.objects.get(product_id=product_id)
     data.delete()
-    return redirect('/seller_home')
+    return redirect('/seller')
 
 def seller_add_image(request, product_id):
     if request.method == 'POST':
@@ -96,7 +108,7 @@ def seller_add_image(request, product_id):
         image = request.FILES.get('image')
         data.image = image
         data.save()
-        return redirect('/seller_home')
+        return redirect('/seller')
     else:
         return render(request,'seller-addproduct.html')
 
@@ -106,7 +118,7 @@ def seller_edit_image(request,product_id):
         image = request.FILES.get('image')
         data.image = image
         data.save()
-        return redirect('/seller_home')
+        return redirect('/seller')
     else:
         data = Product.objects.filter(product_id=product_id)
         return render(request,'seller-editproduct.html')
@@ -115,4 +127,4 @@ def seller_edit_image(request,product_id):
 
 def seller_logout(request):
     del request.session['seller_id']
-    return redirect('/seller_login')
+    return redirect('/seller/seller_login')

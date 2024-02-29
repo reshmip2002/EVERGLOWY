@@ -25,28 +25,42 @@
 				<div class="nav-upper-options">
 					<div class="nav-option option1">
 						<img src= "{% static 'images/Profile-PNG-Image.png' %}" class="nav-img" alt="profile">
-							<a href="profile" style="text-decoration:none; color:black;"><h3> Profile</h3></a>
+							<a href="/seller" style="text-decoration:none; color:black;"><h3> Profile</h3></a>
 					</div>
 
 					<div class="nav-option option3">
 						<img src= "{% static 'images/address-icon-png-5.png' %}" class="nav-img" alt="address">
-							<a href="view_product" style="text-decoration:none; color:black;"><h3> Product</h3></a>
+							<a href="seller/seller_view_product" style="text-decoration:none; color:black;"><h3> Product</h3></a>
 					</div>
 
 					<div class="option2 nav-option">
 						<img src= "{% static 'images/order-png-image.png' %}" class="nav-img" alt="orders">
-						<a href="seller_orders" style="text-decoration:none;color:black;"><h3>Orders</h3></a>
+						<a href="seller/seller_orders" style="text-decoration:none;color:black;"><h3>Orders</h3></a>
 					</div>
 
 					<div class="nav-option logout">
 						<img src= "{% static 'images/logout-png-image.png' %}" class="nav-img" alt="logout">
-						<a href="seller_logout" style="text-decoration:none;color:black;"><h3>Logout</h3></a>
+						<a href="seller/seller_logout" style="text-decoration:none;color:black;"><h3>Logout</h3></a>
 					</div>
 
 				</div>
 			</nav>
 		</div>
 		<div class="main">
+
+			<div class="profile-container">
+				{% for x in data %}
+				<div class="profile-picture">
+					<img src= "{% static 'images/Profile-PNG-image.png' %}"   height="150px" width="200px">
+				</div>
+				<div class="profile-info">
+
+					<h1 style="font-weight: 600; margin-left:30px;">{{x.seller_name}}</h1>
+				</div>
+				{% endfor %}
+			</div><br>
+
+
 			<div class="box-container">
 
                 <div class="box box2">

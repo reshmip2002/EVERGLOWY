@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible"content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>seller productpage</title>
+	<title>seller add product</title>
 	<link rel="stylesheet" href="{% static '/css/profile.css' %}" text="text/css">
 </head>
 <body>
@@ -23,24 +23,24 @@
 		<div class="navcontainer">
 			<nav class="nav">
 				<div class="nav-upper-options">
-					<div class="nav-option option1">
+					<div class="nav-option option3">
 						<img src= "{% static 'images/Profile-PNG-Image.png' %}" class="nav-img" alt="profile">
-							<a href="profile" style="text-decoration:none; color:black;"><h3> Profile</h3></a>
+							<a href="/seller" style="text-decoration:none; color:black;"><h3> Profile</h3></a>
 					</div>
 
-					<div class="nav-option option3">
+					<div class="nav-option option1">
 						<img src= "{% static 'images/address-icon-png-5.png' %}" class="nav-img" alt="address">
-							<a href="view_product" style="text-decoration:none; color:black;"><h3> Product</h3></a>
+							<a href="seller/seller_view_product" style="text-decoration:none; color:black;"><h3> Product</h3></a>
 					</div>
 
 					<div class="option2 nav-option">
 						<img src= "{% static 'images/order-png-image.png' %}" class="nav-img" alt="orders">
-						<a href="seller_orders" style="text-decoration:none;color:black;"><h3>Orders</h3></a>
+						<a href="seller/seller_orders" style="text-decoration:none;color:black;"><h3>Orders</h3></a>
 					</div>
 
 					<div class="nav-option logout">
 						<img src= "{% static 'images/logout-png-image.png' %}" class="nav-img" alt="logout">
-						<a href="seller_logout" style="text-decoration:none;color:black;"><h3>Logout</h3></a>
+						<a href="seller/seller_logout" style="text-decoration:none;color:black;"><h3>Logout</h3></a>
 					</div>
 
 				</div>
@@ -51,10 +51,10 @@
 
 					<form  method="POST" style="margin-left:30px;">
 						{% csrf_token %}
-                <div class="mb-3" >
-                    <label for="exampleInputName1" class="form-label"></label>
-                    <input type="text" class="form-control" id="exampleInputName1" name="product_number" placeholder="PRODUCT ID" aria-describedby="nameHelp" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>
-                  </div>
+<!--                <div class="mb-3" >-->
+<!--                    <label for="exampleInputName1" class="form-label"></label>-->
+<!--                    <input type="text" class="form-control" id="exampleInputName1" name="product_number" placeholder="PRODUCT ID" aria-describedby="nameHelp" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>-->
+<!--                  </div>-->
                 <div class="mb-3" style="padding-top:20px;">
                     <label for="exampleInputNumber1" class="form-label"></label>
                     <input type="text" class="form-control" id="exampleInputName1" name="product_name" aria-describedby="emailHelp" placeholder="PRODUCT NAME" style="width:500px; border-radius:20px; height:30px;text-align:center;"><br>
@@ -73,7 +73,7 @@
                 </div>
 
 
-                <a href="view_product"><button type="submit" class="btn btn-primary" style="border-radius: 20px; font-size: 15px; margin-left:18%; width:100px; height:30px; background-color:blue; color:white;">ADD</button></a> <br>
+                <a href="seller/seller_view_product"><button type="submit" class="btn btn-primary" style="border-radius: 20px; font-size: 15px; margin-left:18%; width:100px; height:30px; background-color:blue; color:white;">ADD</button></a> <br>
             </form>
 
 			</div>

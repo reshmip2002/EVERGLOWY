@@ -26,8 +26,7 @@ def home_page(request):
         current_user = request.session['user']
         users = User.objects.get(email=current_user)
 
-    return render(request, 'homepage.html',
-                  {'products': data, 'user': users, 'cat': cat, 'categorized_products': categorized_products})
+    return render(request, 'homepage.html',{'products': data, 'user': users, 'cat': cat, 'categorized_products': categorized_products})
 
 
 def products(request, id):
