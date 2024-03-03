@@ -55,7 +55,6 @@ def seller_home(request):
 def seller_addproduct(request):
     if request.method == 'POST':
         data = Product()
-        data.seller_id = request.POST.get('seller_id')
         data.product_id = request.POST.get('product_id')
         data.main_category_id = request.POST.get('main_category_id')
         data.product_name = request.POST.get('product_name')
@@ -93,6 +92,7 @@ def seller_viewproduct(request):
     print('Product Function called')
     if 'seller_id' in request.session:
         data = Product.objects.filter(seller_id=Seller.objects.get(email=request.session['seller_id']))
+        # data1 = Category.objects.filter(product_id=Product.objects.get(product_id= request.POST.get('product_id')))
         return render(request, 'seller-viewproduct.html', {'data': data})
     else:
         return redirect('/seller/seller_login')
@@ -103,25 +103,32 @@ def seller_deleteproduct(request, product_id):
     return redirect('/seller')
 
 def seller_add_image(request, product_id):
-    if request.method == 'POST':
-        data = Product.objects.get(product_id=product_id)
-        image = request.FILES.get('image')
-        data.image = image
-        data.save()
-        return redirect('/seller')
+    if 'seller_id' in request.session:
+        product = Product.objects.filter(product_id=product_id)
+        if request.method == 'POST':
+            seller_id = request.session('seller_id', None)
+            image = request.FILES.get('image')
+            print('hiiiiiiiiiii')
+            data = ProductImage()
+            data.image = image
+            data.seller_id = Seller.objects.get(seller_id=seller_id)
+            data.product_id = Product.objects.get(product_id=product_id)
+            data.save()
+            return redirect('/seller')
+        return render(request, 'seller-productimage.html',{'product':product})
     else:
-        return render(request,'seller-addproduct.html')
+        return render(request,'seller-login.html')
 
-def seller_edit_image(request,product_id):
-    if request.method == 'POST':
-        data = Product.objects.get(product_id=product_id)
-        image = request.FILES.get('image')
-        data.image = image
-        data.save()
-        return redirect('/seller')
-    else:
-        data = Product.objects.filter(product_id=product_id)
-        return render(request,'seller-editproduct.html')
+# def seller_edit_image(request,product_id):
+#     if request.method == 'POST':
+#         data = Product.objects.get(product_id=product_id)
+#         image = request.FILES.get('image')
+#         data.image = image
+#         data.save()
+#         return redirect('/seller')
+#     else:
+#         data = Product.objects.filter(product_id=product_id)
+#         return render(request,'seller-editproduct.html')
 
 
 

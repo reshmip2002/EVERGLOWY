@@ -107,8 +107,7 @@
           <div class=" box" style="margin-left:60px;">
               <form method="post" >
                 {% csrf_token %}
-                <select   name="
-                t"  onchange="this.form.submit()">
+                <select   name="selected_discount"  onchange="this.form.submit()">
                     <option value="#" selected disabled>Discount</option>
                     <option value="10">Under 10%</option>
                     <option value="20">Under 20%</option>

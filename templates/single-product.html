@@ -1,467 +1,535 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>single</title>
-     <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     <script src="{% static '/js/script.js' %}"></script>
     <style>
-        .navbar{
-    width: 100%;
-}
-.navbar-brand {
-    font-style: bold;
-    font-size: 80px;
-    color: black;
+        .navbar {
+            width: 100%;
+        }
 
-}
-.btn-outline-success{
-    background-color: rgb(147, 231, 136);
-}
-.width-100{
-    width: 100% !important;
-}
-.margin-20{
-    margin-right: 50px !important;
-}
-.margin-5{
-    margin-left: 20px !important;
-}
-.margin-10{
-    margin-right: 30px !important;
-}
-#navbarDropdown{
-    font-size: large;
-    font-weight: bolder;
-    padding-left: 10px;
-}
-.login{
-    height: 35px;
-    width: 150px;
-}
-.pl-5{
-    padding-left: 20px;
-}
-.images{
+        .navbar-brand {
+            font-style: bold;
+            font-size: 80px;
+            color: black;
+
+        }
+
+        .btn-outline-success {
+            background-color: rgb(147, 231, 136);
+        }
+
+        .width-100 {
+            width: 100% !important;
+        }
+
+        .margin-20 {
+            margin-right: 50px !important;
+        }
+
+        .margin-5 {
+            margin-left: 20px !important;
+        }
+
+        .margin-10 {
+            margin-right: 30px !important;
+        }
+
+        #navbarDropdown {
+            font-size: large;
+            font-weight: bolder;
+            padding-left: 10px;
+        }
+
+        .login {
+            height: 35px;
+            width: 150px;
+        }
+
+        .pl-5 {
+            padding-left: 20px;
+        }
+
+        .images {
             display: flex;
             justify-content: space-between;
             width: 60%;
             height: 20%;
             margin-top: 15px;
         }
-.small-img{
+
+        .small-img {
             width: 50px;
             height: 50px;
             overflow: hidden;
             border: 1.5px solid black;
         }
-        .small-img img{
+
+        .small-img img {
             width: inherit;
             cursor: pointer;
         }
-        .small-img:hover img{
+
+        .small-img:hover img {
             transform: scale(1.2);
         }
-.payment{
-    font-style: bold;
-}
-#shipping{
-    width: 70px;
-    height: 60px;
-}
-#return{
-    width: 50px;
-    height: 50px;
-}
-#brand{
-    width: 50px;
-    height: 50px;
-}
-#srb{
-    font-size: large;
-    font-style: normal;
-}
-#oro{
-    font-size: small;
-    font-style: normal;
-    font-style: italic;
-}
 
-#payment{
-    margin-left: 100px;
-    height: 70px;
-    width: 60px;
+        .payment {
+            font-style: bold;
+        }
 
-}
-#beauty{
-    height: 60px;
-    width: 80px;
+        #shipping {
+            width: 70px;
+            height: 60px;
+        }
 
-}
-#help{
-    height: 60px;
-    width: 70px;
+        #return {
+            width: 50px;
+            height: 50px;
+        }
 
-}
-#sbh{
-    font-size: larger;
-    font-style: normal;
-    margin-left: 3%;
-}
-#agt{
-    font-size: small;
-    font-style: normal;
-    font-style: italic;
-}
+        #brand {
+            width: 50px;
+            height: 50px;
+        }
 
-#epn{
-    font-size: larger;
-    font-style: normal;
-}
-#apf{
-    font-size: small;
-    font-style: normal;
-    font-style: italic;
-}
-#pay{
-    margin-left: 100px;
-    height: 40px;
-    width: 160px;
-}
-#net{
-    margin-left: 100px;
-    font-size: small;
-    font-style: normal;
-}
-#cash{
-    margin-left: 100px;
-    font-size: small;
-    font-style: normal;
-}
-.foots{
-    background-color: black;
-    color: white;
-    text-align: center;
-}
-.copy{
-    text-align: center;
-}
-.connect{
-    height: 20px;
-    width: 10px;
-}
-.center{
-    display: block;
-    height: 60%;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-}
+        #srb {
+            font-size: large;
+            font-style: normal;
+        }
+
+        #oro {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #payment {
+            margin-left: 100px;
+            height: 70px;
+            width: 60px;
+
+        }
+
+        #beauty {
+            height: 60px;
+            width: 80px;
+
+        }
+
+        #help {
+            height: 60px;
+            width: 70px;
+
+        }
+
+        #sbh {
+            font-size: larger;
+            font-style: normal;
+            margin-left: 3%;
+        }
+
+        #agt {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #epn {
+            font-size: larger;
+            font-style: normal;
+        }
+
+        #apf {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #pay {
+            margin-left: 100px;
+            height: 40px;
+            width: 160px;
+        }
+
+        #net {
+            margin-left: 100px;
+            font-size: small;
+            font-style: normal;
+        }
+
+        #cash {
+            margin-left: 100px;
+            font-size: small;
+            font-style: normal;
+        }
+
+        .foots {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .copy {
+            text-align: center;
+        }
+
+        .connect {
+            height: 20px;
+            width: 10px;
+        }
+
+        .center {
+            display: block;
+            height: 60%;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
     </style>
 </head>
+
 <body>
 
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand margin-20" href="/"  style="margin-left: 0.1%;"><h1 style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">EVERGLOWY </h1></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand margin-20" href="/" style="margin-left: 0.1%;">
+                <h1 style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">
+                    EVERGLOWY </h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0 width-100">
-                <li class="nav-item margin-20">
-                  <a class="nav-link active" aria-current="page" href="/" id="home">Home</a>
-                </li>
-                <li class="nav-item dropdown margin-20">
-                  <a class="nav-link dropdown-toggle" type="choose" href="category" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Category
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown"  style="color:black;">
-                    {% for x in cat %}
-                    <li><a class="dropdown-item" href="category/{{x.main_category_id}}" style="color:black;">{{x.main_category_name}}</a></li>
-                    {% endfor %}
-                  </ul>
-                </li>
-                <li class="nav-item margin-20">
-                  <a class="nav-link" href=" " id="brand">Brand</a>
-              </li>
-              <li class="nav-item margin-20">
-                <a class="nav-link" href="offers" id="shop">Offers</a>
-            </li>
-                <li class="nav-item margin-20"><div class=".search-container">
-              <form method="POST" action="/search">
-                {% csrf_token %}
-              <input type="text" placeholder="Search.." name="search" style="border-color:green;">
-              <button class="btn btn-close-black" style="height:38px; border-color:green; border-radius:0;"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form></div>
-                </li>
-            <li><a href="wishlist"><i class="fa-solid fa-heart margin-20" style="font-size: larger; color: red;   padding-top: 10px;"></i></a></li>
-            <li><a href="cart"><i class="fa-solid fa-cart-shopping margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
-            <li><a href="profile"><i class="fa-solid fa-user margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
-            <li>
-              {% if user == 'no user' %}
-                  <a href="{% url 'login' %}"  class="btn btn-success" style="color: black;">Login</a>
-                  {% else %}
-                 <h6>{{user.user_name}}</h6>
-                  <a href="/logout" style="color: black;" class="btn btn-outline-success">Logout</a>
-              {% endif %}
-            </li>
-              </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 width-100">
+                    <li class="nav-item margin-20">
+                        <a class="nav-link active" aria-current="page" href="/" id="home">Home</a>
+                    </li>
+                    <li class="nav-item dropdown margin-20">
+                        <a class="nav-link dropdown-toggle" type="choose" href="category" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Category
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="color:black;">
+                            {% for x in cat %}
+                            <li><a class="dropdown-item" href="category/{{x.main_category_id}}"
+                                    style="color:black;">{{x.main_category_name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="nav-item margin-20">
+                        <a class="nav-link" href=" " id="brand">Brand</a>
+                    </li>
+                    <li class="nav-item margin-20">
+                        <a class="nav-link" href="offers" id="shop">Offers</a>
+                    </li>
+                    <li class="nav-item margin-20">
+                        <div class=".search-container">
+                            <form method="POST" action="/search">
+                                {% csrf_token %}
+                                <input type="text" placeholder="Search.." name="search" style="border-color:green;">
+                                <button class="btn btn-close-black"
+                                    style="height:38px; border-color:green; border-radius:0;"><i
+                                        class="fa-solid fa-magnifying-glass"></i></button>
+                            </form>
+                        </div>
+                    </li>
+                    <li><a href="wishlist"><i class="fa-solid fa-heart margin-20"
+                                style="font-size: larger; color: red;   padding-top: 10px;"></i></a></li>
+                    <li><a href="cart"><i class="fa-solid fa-cart-shopping margin-20"
+                                style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
+                    <li><a href="profile"><i class="fa-solid fa-user margin-20"
+                                style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
+                    <li>
+                        {% if user == 'no user' %}
+                        <a href="{% url 'login' %}" class="btn btn-success" style="color: black;">Login</a>
+                        {% else %}
+                        <h6>{{user.user_name}}</h6>
+                        <a href="/logout" style="color: black;" class="btn btn-outline-success">Logout</a>
+                        {% endif %}
+                    </li>
+                </ul>
             </div>
-          </div>
-        </nav>
+        </div>
+    </nav>
 
-<main class="mt-5 pt-4">
-    <div class="container mt-5">
-        {% for x in products %}
-        <!--Grid row-->
-        <div class="row" style="width: 70rem;">
-            <!--Grid column-->
-            <div class="col-md-6 mb-4" style="width: 25rem;" >
+    <main class="mt-5 pt-4">
+        <div class="container mt-5">
+            {% for x in products %}
+            <!--Grid row-->
+            <div class="row" style="width: 70rem;">
+                <!--Grid column-->
+                <div class="col-md-6 mb-4" style="width: 25rem;">
 
-                <img src="{{ x.images.first.image.url }}" height="450px;" width="300px;" style="margin-left: 50px;"   class="img-fluid" alt="">
+                    <img src="{{ x.images.first.image.url }}" height="450px;" width="300px;" style="margin-left: 50px;"
+                        class="img-fluid" alt="">
 
-                <div class="images">
-                {% for image in x.images.all %}
+                    <div class="images">
+                        {% for image in x.images.all %}
 
-                <div class="small-img">
-                    <img src="{{ image.image.url }}" onclick="showImg(this.src)">
+                        <div class="small-img">
+                            <img src="{{ image.image.url }}" onclick="showImg(this.src)">
+                        </div>
+
+                        {% endfor %}
+                    </div>
+
                 </div>
 
-                {% endfor %}
-            </div>
+                <!--Grid column-->
 
-            </div>
+                <!--Grid column-->
+                <div class="col-md-6 mb-4">
+                    <!--Content-->
+                    <div class="p-4">
+                        <div class="mb-3">
+                            <a href="">
+                                <span class="badge bg-info me-1">New</span>
+                            </a>
+                            <a href="">
+                                <span class="badge bg-danger me-1">Bestseller</span>
+                            </a>
+                        </div>
 
-            <!--Grid column-->
+                        <div class="pname">
+                            {{ x.product_name }}<br>
+                        </div>
+                        <strong>
+                            <p style="font-size: 20px;"> {{ x.description }}</p>
+                        </strong>
 
-            <!--Grid column-->
-            <div class="col-md-6 mb-4">
-                <!--Content-->
-                <div class="p-4">
-                    <div class="mb-3">
-                        <a href="">
-                            <span class="badge bg-info me-1">New</span>
-                        </a>
-                        <a href="">
-                            <span class="badge bg-danger me-1">Bestseller</span>
-                        </a>
-                    </div>
+                        <p class="lead">
+                            <!--                        <span class="me-1">-->
+                            <!--                            <del>$200</del>-->
+                            <!--                        </span>-->
+                            <span>₹{{ x.price }}</span>
+                        </p>
+                        <h5 style="font-style: bold;">Expiry Date : {{ x.expiry_date }}</h5><br>
+                        <div class="ratings">{{ x.ratings }}
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half"></i>
+                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-outline me-1" style="width: 100px;">
 
-                    <div class="pname">
-                        {{ x.product_name }}<br>
-                    </div>
-                    <strong><p style="font-size: 20px;"> {{ x.description }}</p></strong>
-
-                    <p class="lead">
-<!--                        <span class="me-1">-->
-<!--                            <del>$200</del>-->
-<!--                        </span>-->
-                        <span>₹{{ x.price }}</span>
-                    </p>
-                    <h5 style="font-style: bold;">Expiry Date : {{ x.expiry_date }}</h5><br>
-                    <div class="ratings">{{ x.ratings }}
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half"></i>
-                    </div>
-                                <form method="POST" >
-                                {% csrf_token %}
-                        <div class="form-outline me-1" style="width: 100px;">
-
-                            <p>Quantity:
-                                <input type="number" min="1" max="10" value="1" name="quantity"></p>
+                                <p>Quantity:
+                                    <input type="number" min="1" max="10" value="1" name="quantity">
+                                </p>
 
                             </div><br>
-                            <a href="/wishlist" class="btn btn-outline-info">Wishlist</a>
-                        <button class="btn btn-primary ms-1" >
-                            Add to cart
-                            <i class="fas fa-shopping-cart ms-1"></i>
-                        </button>
 
+
+                            <button formaction="/wishlist" class="d-inline btn btn-outline-info px-5 py-2" style="text-decoration:none; color:black;">Wishlist</button>
+
+
+                            <input type="hidden" name="product_id" value="{{x.product_id}}" />
+                            <button formaction="/cart" class="px-5 py-2 btn btn-primary text-decoration-none">Add to
+                                Cart</button>
+
+                            <button formaction="/buy " class="px-5 py-2 btn btn-success" style="text-decoration:none; color:white;">Buy Now</button>
                         </form>
+
+
                     </div>
 
-                <!--Content-->
+                    <!--Content-->
+                </div>
+                <!--Grid column-->
             </div>
-            <!--Grid column-->
-        </div>
-        <!--Grid row-->
+            <!--Grid row-->
 
-        <hr />
-    {% endfor %}
-        <!--Grid row-->
+            <hr />
+            {% endfor %}
+            <!--Grid row-->
 
-    <div class="details" style="padding-left:50px;">
-            <div class="description">
-                <h5>DELIVERY OPTIONS <i class="fas fa-shopping-cart "></i></h5>
-            <form>
-                {% csrf_token %}
-                <label for="pin"></label>
-                <textarea id="pin" name="pin" rows="1" cols="30" placeholder="Enter a PIN Code">
+            <div class="details" style="padding-left:50px;">
+                <div class="description">
+                    <h5>DELIVERY OPTIONS <i class="fas fa-shopping-cart "></i></h5>
+                    <form>
+                        {% csrf_token %}
+                        <label for="pin"></label>
+                        <textarea id="pin" name="pin" rows="1" cols="30" placeholder="Enter a PIN Code">
 
                 </textarea>
-                <h6 style="font-weight:200">Please enter your PIN Code to check delivery time & pay on Delivery Availability</h6>
-            </form>
+                        <h6 style="font-weight:200">Please enter your PIN Code to check delivery time & pay on Delivery
+                            Availability</h6>
+                    </form>
 
-            </div><br>
-            <h5 style="font-style: thin; font-size:medium;">100% Original Products <br>
-                Cash on delivery might be available <br>
-                Easy 7 days exchanges <br>
-                This item is only exchangeable for the same or a different size , if available , and cannot be returned
-            </h5><br>
-            <h5 style="font-style: bold;">PRODUCT DETAILS</h5>
-        {% for x in products %}
-            <h6 style="font-weight: 100">{{ x.product_name}} {{ x.description}}</h6><br>
-        {% endfor %}
-            <h6 style="font-weight: bold">Material & Care</h6>
-            <h6 style="font-weight: 100">Keep in room temp.</h6><br>
-            <h6 style="font-weight: bold">Specifications</h6><br>
+                </div><br>
+                <h5 style="font-style: thin; font-size:medium;">100% Original Products <br>
+                    Cash on delivery might be available <br>
+                    Easy 7 days exchanges <br>
+                    This item is only exchangeable for the same or a different size , if available , and cannot be
+                    returned
+                </h5><br>
+                <h5 style="font-style: bold;">PRODUCT DETAILS</h5>
+                {% for x in products %}
+                <h6 style="font-weight: 100">{{ x.product_name}} {{ x.description}}</h6><br>
+                {% endfor %}
+                <h6 style="font-weight: bold">Material & Care</h6>
+                <h6 style="font-weight: 100">Keep in room temp.</h6><br>
+                <h6 style="font-weight: bold">Specifications</h6><br>
                 <div class="row">
                     <div class="col-md-3">
                         <h6 style="font-weight: 50">Concern</h6>
                         <h6 style="font-weight: 500">Anti-Ageing</h6><br>
 
                     </div>
-                     <div class="col-md-3">
+                    <div class="col-md-3">
                         <h6 style="font-weight: 50">Preference</h6>
                         <h6 style="font-weight: 500">Cruelty-Free</h6><br>
-                     </div>
+                    </div>
                     <div class="col-md-3">
                         <h6 style="font-weight: 50">Sustainable</h6>
                         <h6 style="font-weight: 500">Regular</h6><br>
                     </div>
                 </div>
 
+            </div>
+            <div class="reviewrating">
+                <h4 style="text-align:center; font-style:bold;">Review & Rating</h4><br>
+
+                <form method="POST" style="margin-left:30%;">
+                    {% csrf_token %}
+                    <input type="text" name="review" placeholder="Enter ur review......."
+                        style="width:500px; text-align:center;">
+                    <button type="submit" class="btn btn-primary">Review</button>
+                </form>
+            </div><br>
+            {% for x in review %}
+            <div class="card" style="width: 28rem;margin-left:40px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{x.user_id.user_name}}</h5> <br>
+                    <h6 class="card-subtitle mb-2 text-muted">{{x.rating}}</h6> <br>
+                    <p class="card-text">{{x.review}}</p>
+                </div>
+            </div><br>
+            {% endfor %}
+
+
+    </main>
+
+
+    <section class="detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-4"><br>
+                    <img id="shipping" src="{% static 'images/shipping.png' %}">
+                    <h5 id="srb">Free Shipping</h5>
+                    <h6 id="oro">On orders above ₹499</h6>
+                </div>
+                <div class="col-4"><br>
+                    <img id="return" src="{% static 'images/returns.webp' %}">
+                    <h5 id="srb">Easy Return</h5>
+                    <h6 id="oro">100% Return in 5 Days</h6>
+                </div>
+                <div class="col-4"><br>
+                    <img id="brand" src="{% static 'images/brand1.png' %}">
+                    <h5 id="srb">700+ Brands</h5>
+                    <h6 id="oro">Over 10000+ Genuine Products</h6>
+                </div>
+            </div>
         </div>
-        <div class="reviewrating">
-            <h4 style="text-align:center; font-style:bold;">Review & Rating</h4><br>
-
-            <form method="POST" style="margin-left:30%;">
-                {% csrf_token %}
-                <input type="text" name="review" placeholder="Enter ur review......." style="width:500px; text-align:center;">
-                <button type="submit" class="btn btn-primary">Review</button>
-            </form>
-<!--            <a href="/reviewrating"><button style="color:black; background-color:sandybrown; width:250px; height:30px; text-align:center; margin-left:40%;" type="submit">Send Your Reviews and Ratings</button></a>-->
-        </div><br>
-        {% for x in review %}
-        <div class="card" style="width: 28rem;margin-left:40px;">
-          <div class="card-body">
-            <h5 class="card-title" >{{x.user_id.user_name}}</h5> <br>
-            <h6 class="card-subtitle mb-2 text-muted" >{{x.rating}}</h6> <br>
-            <p class="card-text" >{{x.review}}</p>
-          </div>
-        </div><br>
-        {% endfor %}
-
-
-</main>
-
-
-        <section class="detail">
-      <div class="container">
-        <div class="row">
-          <div class="col-4"><br>
-            <img id="shipping" src="{% static 'images/shipping.png' %}">
-            <h5 id="srb">Free Shipping</h5>
-            <h6 id="oro">On orders above ₹499</h6>
-          </div>
-          <div class="col-4"><br>
-          <img id="return" src="{% static 'images/returns.webp' %}">
-          <h5 id="srb">Easy Return</h5>
-          <h6 id="oro">100% Return in 5 Days</h6>
-          </div>
-          <div class="col-4"><br>
-          <img id="brand" src="{% static 'images/brand1.png' %}">
-          <h5 id="srb">700+ Brands</h5>
-          <h6 id="oro">Over 10000+ Genuine Products</h6>
-          </div>
-        </div>
-      </div>
     </section><br>
-        <section class="secure">
-          <div class="container">
+    <section class="secure">
+        <div class="container">
             <div class="row">
-              <div class="col-4"><br>
-                <img id="payment" src="{% static 'images/secure payment.png' %}">
-                <h3 id="sbh">100% Secure Payment</h3>
-                <h6 id="agt">All Online Payments are Accepted</h6>
-              </div>
-              <div class="col-4"><br>
-                <img id="beauty" src="{% static 'images/beauty assist.png' %}">
-                <h3  id="sbh">Beauty Assistant</h3>
-                <h6 id="agt">Tell me what you are <br> looking for and <br>
-                    i will work my magic <br> to help you find your <br>
-                    perfect match.</h6>
-              </div>
-              <div class="col-4"><br>
-                <img id="help" src="{% static 'images/help center.png' %}">
-                <h3  id="sbh">Help Center</h3>
-                <h6 id="agt">Got a question? <br>Look no further. <br>
-                    Browse FAQs or <br>submit your query.</h6>
-              </div>
+                <div class="col-4"><br>
+                    <img id="payment" src="{% static 'images/secure payment.png' %}">
+                    <h3 id="sbh">100% Secure Payment</h3>
+                    <h6 id="agt">All Online Payments are Accepted</h6>
+                </div>
+                <div class="col-4"><br>
+                    <img id="beauty" src="{% static 'images/beauty assist.png' %}">
+                    <h3 id="sbh">Beauty Assistant</h3>
+                    <h6 id="agt">Tell me what you are <br> looking for and <br>
+                        i will work my magic <br> to help you find your <br>
+                        perfect match.</h6>
+                </div>
+                <div class="col-4"><br>
+                    <img id="help" src="{% static 'images/help center.png' %}">
+                    <h3 id="sbh">Help Center</h3>
+                    <h6 id="agt">Got a question? <br>Look no further. <br>
+                        Browse FAQs or <br>submit your query.</h6>
+                </div>
             </div>
-          </div>
-        </section><br>
-        <section class="about">
-          <div class="about-us">
+        </div>
+    </section><br>
+    <section class="about">
+        <div class="about-us">
             <div class="container ">
-              <div class="row">
-                <div class="col">
-                  <h5 id="epn" style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold; font-size:Larger;"><br>EVERGLOWY</h5>
-                  <h6 id="apf">About us<br>Careers<br>Press<br>Sitemap<br>Compilance</h6>
+                <div class="row">
+                    <div class="col">
+                        <h5 id="epn"
+                            style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold; font-size:Larger;">
+                            <br>EVERGLOWY
+                        </h5>
+                        <h6 id="apf">About us<br>Careers<br>Press<br>Sitemap<br>Compilance</h6>
+                    </div>
+                    <div class="col">
+                        <h5 id="epn"><br>POLICY INFO</h5>
+                        <h6 id="apf">Privacy Policy<br>Terms Of Use<br>Return & Cancellation<br>Policy</h6>
+                    </div>
+                    <div class="col">
+                        <h5 id="epn"><br>NEED HELP?</h5>
+                        <h6 id="apf">FAQ's<br>Contact Us</h6>
+                    </div>
                 </div>
-                <div class="col">
-                  <h5  id="epn"><br>POLICY INFO</h5>
-                  <h6 id="apf">Privacy Policy<br>Terms Of Use<br>Return & Cancellation<br>Policy</h6>
-                </div>
-                <div class="col">
-                  <h5 id="epn"><br>NEED HELP?</h5>
-                  <h6 id="apf">FAQ's<br>Contact Us</h6>
-                </div>
-              </div>
             </div>
-          </div>
-        </section><br>
-        <section class="pay">
-          <div class="pay">
+        </div>
+    </section><br>
+    <section class="pay">
+        <div class="pay">
             <div class="row">
-              <div class="col">
-                <h5 class="payment pl-5" style="margin-left:90px;">PAYMENT</h5>
-                <img id="pay" src="{% static 'images/Screenshot 2024-01-10 183402.png' %}"><br>
-                <h6 id="net">NET BANKING </h6>
-                <h6 id="cash">₹ CASH ON DELIVERY</h6>
-              </div>
-              <div class="col">
-                <h5>CONNECT</h5>
-                <i class="fa-brands fa-facebook-f margin-10"></i>
-                <i class="fa-brands fa-facebook-messenger  margin-10"></i>
-                <i class="fa-brands fa-instagram  margin-10"></i>
-                <i class="fa-regular fa-envelope  margin-10"></i>
-                <i class="fa-brands fa-whatsapp margin-10"></i>
-                <i class="fa-brands fa-twitter margin-10"></i>
-                <i class="fa-brands fa-youtube margin-10"></i>
-              </div>
+                <div class="col">
+                    <h5 class="payment pl-5" style="margin-left:90px;">PAYMENT</h5>
+                    <img id="pay" src="{% static 'images/Screenshot 2024-01-10 183402.png' %}"><br>
+                    <h6 id="net">NET BANKING </h6>
+                    <h6 id="cash">₹ CASH ON DELIVERY</h6>
+                </div>
+                <div class="col">
+                    <h5>CONNECT</h5>
+                    <i class="fa-brands fa-facebook-f margin-10"></i>
+                    <i class="fa-brands fa-facebook-messenger  margin-10"></i>
+                    <i class="fa-brands fa-instagram  margin-10"></i>
+                    <i class="fa-regular fa-envelope  margin-10"></i>
+                    <i class="fa-brands fa-whatsapp margin-10"></i>
+                    <i class="fa-brands fa-twitter margin-10"></i>
+                    <i class="fa-brands fa-youtube margin-10"></i>
+                </div>
             </div>
-          </div>
-        </section>
-        <section class="foot">
-      <div class="foots">
-        <footer class="bg-dark text-light p-1">
-          <h7 style="text-align: center;">Copyright ©2024 Everglowy.All Rights Reserved.</h7>
-        </footer>
-      </div>
+        </div>
+    </section>
+    <section class="foot">
+        <div class="foots">
+            <footer class="bg-dark text-light p-1">
+                <h6 style="text-align: center;">Copyright ©2024 Everglowy.All Rights Reserved.</h7>
+            </footer>
+        </div>
     </section>
 
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eM5V9sr5ktoJHnUA2zL4agvbQlGyR0L5L2c8c5z+Owai1Uv5UO8JqC2PahvS/Rj" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-eM5V9sr5ktoJHnUA2zL4agvbQlGyR0L5L2c8c5z+Owai1Uv5UO8JqC2PahvS/Rj"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

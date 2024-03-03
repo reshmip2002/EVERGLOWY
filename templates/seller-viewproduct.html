@@ -29,7 +29,7 @@
 					</div>
 
 					<div class="nav-option option1">
-						<img src= "{% static 'images/address-icon-png-5.png' %}" class="nav-img" alt="address">
+						<img src= "{% static 'images/product-png-image.png' %}" class="nav-img" alt="address">
 							<a href="/seller/seller_view_product" style="text-decoration:none; color:black;"><h3> Product</h3></a>
 					</div>
 
@@ -48,27 +48,55 @@
 		</div>
 		<div class="main">
 			<div class="row">
-                    <a href="/seller/seller_add_product" style="text-decoration:none;"><button type="button" class="btn btn-outline-primary" style="width=100px; height=20px; text-decoration: none; color:black;">ADD PRODUCT</button></a>
-            </div>
-			{% for x in data %}
-			<div class="row">
-            <div class="card text-dark bg-light mb-3" style="max-width: 33rem; ">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card-body">
-                        <h5 class="card-title">{{x.product_name}}</h5>
-                        <p class="card-text">{{x.price}} <br>{{x.quantity }}<br>{{x.category_name}}</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="/seller/seller_edit_product/{{x.product_id}}" class="btn btn-light" style="color: black; text-decoration:none">Edit</a>
-                        <a href="/seller/seller_delete_product/{{x.product_id}}" class="btn btn-light" style="padding-left: 10px; color:black; text-decoration:none">Delete</a>
-                    </div>
-                </div>
-                <br>
-            </div>
-		</div>
-			{% endfor %}
+				<a href="/seller/seller_add_product" style="text-decoration:none;"><button type="button" class="btn btn-outline-primary" style="width=150px; height=20px; text-decoration: none; color:black;">ADD PRODUCT</button></a>
+            </div><br><br>
+			<table class="table table-bordered table-striped ">
+				<tbody>
+                    <tr>
+						<th scope="col">Product ID</th>
+                        <th scope="col">Product Name</th>
+						<th scope="col">Description</th>
+                        <th scope="col">Price</th>
+						<th scope="col">Expiry Date</th>
+                        <th scope="col">Quantity</th>
+						<th scope="col">Category Name</th>
+						<th scope="col">Images</th>
+                        <th scope="col">Action</th>
+                    </tr>
+				{% for x in data %}
+					<tr>
+						<td>{{x.product_id}}</td>
+                        <td>{{x.product_name}}</td>
+                        <td>{{x.description}}</td>
+                        <td>{{x.price}}</td>
+						<td>{{x.expiry_date}}</td>
+                        <td>{{x.quantity}}</td>
+                        <td>{{x.main_category_name}}</td>
+						<td><a href="/seller/seller_add_image/{{x.product_id}}"><button type="file">Choose File</button> </a></td>
+						<td><a href="/seller/seller_edit_product/{{x.product_id}}"><button type="button" class="btn btn-light" style="color: black; text-decoration:none; width:60px;">Edit</button></a><a href="/seller/seller_delete_product/{{x.product_id}}"><button type="button" class="btn btn-light" style="padding-left: 10px; color:black; text-decoration:none; width:60px;">Delete</button></a></td>
+					</tr>
+				{% endfor %}
+                </tbody>
+			</table>
+<!--			{% for x in data %}-->
+<!--			<div class="row">-->
+<!--            <div class="card text-dark bg-light mb-3" style="max-width: 33rem; ">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-8">-->
+<!--                        <div class="card-body">-->
+<!--                        <h5 class="card-title">{{x.product_name}}</h5>-->
+<!--                        <p class="card-text">{{x.price}} <br>{{x.quantity }}<br>{{x.main_category_name}}</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-4">-->
+<!--						<a href="/seller/seller_edit_product/{{x.product_id}}"><button type="button" class="btn btn-light" style="color: black; text-decoration:none; width:60px;">Edit</button></a>-->
+<!--						<a href="/seller/seller_delete_product/{{x.product_id}}"><button type="button" class="btn btn-light" style="padding-left: 10px; color:black; text-decoration:none; width:60px;">Delete</button></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <br>-->
+<!--            </div>-->
+<!--		</div>-->
+<!--			{% endfor %}-->
 	</div>
 	</div>
 

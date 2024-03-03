@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import User, Product, Cart, ReviewRating, Category, UserImage
+from .models import *
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.template import loader
@@ -50,20 +50,63 @@ def products(request, id):
     return render(request, 'single-product.html', {'products': data, 'review': data})
 
 
-def cart(request):
-    print("sdfghj")
+# def cart(request):
+#     print("sdfghj")
+#     # product = Product.objects.filter(product_id=request.POST.get('product_id'))
+#     if 'user' in request.session:
+#         # cart_items = Cart.objects.filter(user_id=User.objects.get(email=request.session.get('user')))
+#         # total_price = cart_items.aggregate(total_price=Sum('product_id__price' * 'quantity'))
+#         #
+#         # # If there are no items in the cart, total_price will be None, so handle it accordingly
+#         # total_price = total_price['total_price'] if total_price['total_price'] is not None else 0
+#         # print(f' total: {total_price}')
+#         if request.method == 'POST':
+#
+#             qty = int(request.POST['quantity'])
+#
+#             product_id = int(request.POST["product_id"])
+#             cart_obj = Cart()
+#             cart_obj.product_id = Product.objects.get(product_id=product_id)
+#             cart_obj.quantity = qty
+#             cart_obj.user_id = User.objects.get(email=request.session.get('user'))
+#             cart_obj.save()
+#
+#         email = request.session.get('user')
+#         data = Cart.objects.filter(user_id=User.objects.get(email=email))
+#         print(data.values())
+#         return render(request, 'cart.html', {'cart': data})
+#     else:
+#         return redirect('/login')
+
+def buy(request):
     if 'user' in request.session:
-        print("aaaaaaaaaaaaaaaaaaaaaa")
         email = request.session.get('user')
-        data = Cart.objects.filter(user_id=User.objects.get(email=email))
-        print(data.values())
-        # total_price = Cart.objects.filter(user_id=User.objects.get(email=request.session['user'])).aggregate(
-        #     total_price=Sum(F('product_id__price') * F('quantity'), output_field=models.DecimalField())
-        # )['total_price'] or Decimal('0.00')
-        # print(f"Total price for user : ₹{total_price}")
-        return render(request, 'cart.html', {'cart': data})
+        print("aaaaaaaaaaaaaaaaaaaaaa")
+        product_details=Order.objects.filter(user_id=User.objects.get(user_id=request.session('user')))
+        total_price = Cart.objects.filter(user_id=User.objects.get(email=request.session.get('user'))).aggregate(
+            total_price=Sum(F('product_id__price') * F('quantity'), output_field=models.DecimalField())
+            )['total_price'] or Decimal('0.00')
+        print(f"Total price for user : ₹{total_price}")
+        address = UserAddress.objects.all()
+
+        # data = Cart.objects.filter(user_id=User.objects.get(email=email))
+        # print(data.values())
+
+        # amount = 0
+        # for x in cart:
+        #     value = x.quantity * x.product_id.price
+        #     amount = amount + value
+        #     total_price = amount + 50
+
+        return render(request, 'buynow.html', {'cart': product_details,'total_price': total_price,'address': address})
     else:
         return redirect('/login')
+
+def checkout(request):
+    if 'user' in request.session:
+        email = request.session.get('user')
+        data = UserAddress.objects.filter(user_id=User.objects.get(email=email))
+        return render(request, 'checkout.html', {'cart': data})
 
 
 def dlt_product(request, cart_id):
@@ -98,21 +141,26 @@ def category(request, main_category_id):
 def search(request):
     print("rrrrrrrrr")
     data = Product.objects.select_related('seller_id').prefetch_related('images').all()
-    brand = Brand.objects.filter()
+
     offer = Offer.objects.all()
     cat = Category.objects.all()
     print(request.method)
     brand_id = request.GET.get('brand_id')
     print(brand_id)
-    offer_id = request.GET.get('offer_id')
-    print(offer_id)
+    # offer_id = request.GET.get('offer_id')
+    # print(offer_id)
     search = ''
     if brand_id:
         print('hello')
+
         data = Product.objects.filter(brand_id=Brand.objects.get(brand_id=brand_id))
-        offers = Product.objects.filter(offer_id=Offer.objects.get(offer_id=offer_id))
+        # data1 = Product.objects.filter(offer_id=Offer.objects.get(offer_id=offer_id))
     if request.method == 'POST':
         search = request.POST.get('search')
+        if request.POST.get('search'):
+            data = data.filter(Q(product_name__icontains=search) | Q(description__icontains=search) | Q(price__icontains=search) | Q(main_category_id__main_category_name__icontains=search) | Q(brand_id__brand_name__icontains=search))
+            # data1 = data1.filter(Q(offer_id__offer_name__icontains=search) | Q(offer_id__discount__icontains=search))
+            # print(data1.values())
         if 'selected_price' in request.POST:
             print(int(request.POST['selected_price']))
             data = data.filter(price__lt=int(request.POST['selected_price']))
@@ -121,8 +169,8 @@ def search(request):
             data = data.filter(offer__discount__lt=int(request.POST['selected_discount']))
             data = data.prefetch_related('images')
             print(data.values())
-        return render(request, 'search.html', {'products': data, 'search': search, 'cat': cat, })
-    return render(request, 'search.html', {'products': data, 'cat': cat, 'brands': brand})
+
+    return render(request, 'search.html', {'products': data, 'cat': cat, 'search':search, 'brands': brand})
 
 
 def brand(request):

@@ -23,7 +23,7 @@
 		<div class="navcontainer">
 			<nav class="nav">
 				<div class="nav-upper-options">
-					<div class="nav-option option1">
+					<div class="nav-option option3">
 						<img src= "{% static 'images/Profile-PNG-Image.png' %}" class="nav-img" alt="profile">
 							<a href="/seller" style="text-decoration:none; color:black;"><h3> Profile</h3></a>
 					</div>
@@ -33,7 +33,7 @@
 							<a href="seller/seller_view_product" style="text-decoration:none; color:black;"><h3> Product</h3></a>
 					</div>
 
-					<div class="option2 nav-option">
+					<div class="option1 nav-option">
 						<img src= "{% static 'images/order-png-image.png' %}" class="nav-img" alt="orders">
 						<a href="seller/seller_orders" style="text-decoration:none;color:black;"><h3>Orders</h3></a>
 					</div>
@@ -48,56 +48,8 @@
 		</div>
 		<div class="main">
 
-			<div class="profile-container">
-				{% for x in data %}
-				<div class="profile-picture">
-					<img src= "{% static 'images/Profile-PNG-image.png' %}"   height="150px" width="200px">
-				</div>
-				<div class="profile-info">
-
-					<h1 style="font-weight: 600; margin-left:30px;">{{x.seller_name}}</h1>
-				</div>
-				{% endfor %}
-			</div><br>
 
 
-			<div class="box-container">
-
-                <div class="box box2">
-                    <div class="text">
-                        <h2 class="topic-heading">150</h2>
-                        <h2 class="topic">Likes</h2>
-                    </div>
-
-                    <img src= "#" alt="likes">
-                </div>
-                <div class="box box2">
-                    <div class="text">
-                        <h2 class="topic-heading">150</h2>
-                        <h2 class="topic">Likes</h2>
-                    </div>
-
-                    <img src= "#" alt="likes">
-                </div>
-                <div class="box box2">
-                    <div class="text">
-                        <h2 class="topic-heading">150</h2>
-                        <h2 class="topic">Likes</h2>
-                    </div>
-
-                    <img src= "#" alt="likes">
-                </div>
-                <div class="box box2">
-                    <div class="text">
-                        <h2 class="topic-heading">150</h2>
-                        <h2 class="topic">Likes</h2>
-                    </div>
-
-                    <img src= "#" alt="likes">
-                </div>
-
-
-            </div>
 		</div>
 	</div>
 

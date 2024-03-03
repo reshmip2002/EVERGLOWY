@@ -3,8 +3,6 @@ from Sellerapp.models import *
 from Adminapp.models import *
 
 
-
-
 # Create your models here.
 
 class User(models.Model):
@@ -15,7 +13,6 @@ class User(models.Model):
 
     def __str__(self):
         return self.user_name
-
 
     class Meta:
         db_table = 'user_table'
@@ -41,12 +38,11 @@ class UserAddress(models.Model):
     post = models.CharField(max_length=20, null=True)
     pin = models.CharField(max_length=20, null=True)
     landmark = models.CharField(max_length=20, null=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     city_name = models.ForeignKey(LocationCity, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"Address for User: {self.user_id}"
-
 
 
 class Order(models.Model):
@@ -63,25 +59,20 @@ class Order(models.Model):
         db_table = 'order_table'
 
 
-class Cart(models.Model):
-    cart_id = models.AutoField(primary_key=True, default=None)
+class UserCart(models.Model):
+    cart_id = models.AutoField(primary_key=True)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.CharField(max_length=20, null=True)
+    quantity = models.IntegerField(null=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return f"Cart item for {self.user_id.user_name}: {self.product_id.product_name}"
 
-    class Meta:
-        db_table = 'cart_table'
-
 
 class Wishlist(models.Model):
-    list_id = models.IntegerField(primary_key=True, default=None)
+    list_id = models.IntegerField(primary_key=True)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return f"Wishlist item for {self.user_id.user_name}: {self.product_id.product_name}"
@@ -96,7 +87,6 @@ class ReviewRating(models.Model):
     rating = models.IntegerField(null=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return f"ReviewRating item for {self.user_id.user_name}: {self.product_id.product_name}"
