@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    <script src="{% static '/js/script.js' %}"></script>
+<!--    <script src="{% static '/js/script.js' %}"></script>-->
     <style>
         .navbar {
             width: 100%;
@@ -271,11 +271,15 @@
                 <!--Grid column-->
                 <div class="col-md-6 mb-4" style="width: 25rem;">
 
+                     <div class="big-img">
+                    {% for image in x.images.all|slice:":1" %}
                     <img src="{{ x.images.first.image.url }}" height="450px;" width="300px;" style="margin-left: 50px;"
                         class="img-fluid" alt="">
+                    {% endfor %}
+                         </div>
 
                     <div class="images">
-                        {% for image in x.images.all %}
+                        {% for image in x.images.all|slice:":5" %}
 
                         <div class="small-img">
                             <img src="{{ image.image.url }}" onclick="showImg(this.src)">
@@ -530,6 +534,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-eM5V9sr5ktoJHnUA2zL4agvbQlGyR0L5L2c8c5z+Owai1Uv5UO8JqC2PahvS/Rj"
         crossorigin="anonymous"></script>
+<script>
+    let bigImg = document.querySelector('.big-img img');
+    function showImg(pic){
+        bigImg.src= pic;
+    }
+</script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@ from django.template import loader
 from Sellerapp.models import *
 from Userapp.models import *
 from Adminapp.models import *
-from Userapp.models import UserAddress
+from Userapp.models import UserAddress, UserCart
 from django.db.models import Q, Sum, F
 from decimal import Decimal
 
@@ -41,7 +41,7 @@ def products(request, id):
         if request.method == 'POST':
             print('cart now')
             quantity = request.POST.get('quantity')
-            cart_data = Cart()
+            cart_data = UserCart()
             cart_data.product_id = Product.objects.get(product_id=id)
             cart_data.quantity = quantity
             cart_data.user_id = User.objects.get(email=email)
@@ -50,40 +50,40 @@ def products(request, id):
     return render(request, 'single-product.html', {'products': data, 'review': data})
 
 
-# def cart(request):
-#     print("sdfghj")
-#     # product = Product.objects.filter(product_id=request.POST.get('product_id'))
-#     if 'user' in request.session:
-#         # cart_items = Cart.objects.filter(user_id=User.objects.get(email=request.session.get('user')))
-#         # total_price = cart_items.aggregate(total_price=Sum('product_id__price' * 'quantity'))
-#         #
-#         # # If there are no items in the cart, total_price will be None, so handle it accordingly
-#         # total_price = total_price['total_price'] if total_price['total_price'] is not None else 0
-#         # print(f' total: {total_price}')
-#         if request.method == 'POST':
-#
-#             qty = int(request.POST['quantity'])
-#
-#             product_id = int(request.POST["product_id"])
-#             cart_obj = Cart()
-#             cart_obj.product_id = Product.objects.get(product_id=product_id)
-#             cart_obj.quantity = qty
-#             cart_obj.user_id = User.objects.get(email=request.session.get('user'))
-#             cart_obj.save()
-#
-#         email = request.session.get('user')
-#         data = Cart.objects.filter(user_id=User.objects.get(email=email))
-#         print(data.values())
-#         return render(request, 'cart.html', {'cart': data})
-#     else:
-#         return redirect('/login')
+def cart(request):
+    print("sdfghj")
+    # product = Product.objects.filter(product_id=request.POST.get('product_id'))
+    if 'user' in request.session:
+        # cart_items = UserCart.objects.filter(user_id=User.objects.get(email=request.session.get('user')))
+        # total_price = cart_items.aggregate(total_price=Sum('product_id__price' * 'quantity'))
+        #
+        # # If there are no items in the cart, total_price will be None, so handle it accordingly
+        # total_price = total_price['total_price'] if total_price['total_price'] is not None else 0
+        # print(f' total: {total_price}')
+        if request.method == 'POST':
+
+            qty = int(request.POST['quantity'])
+
+            product_id = int(request.POST["product_id"])
+            cart_obj = UserCart()
+            cart_obj.product_id = Product.objects.get(product_id=product_id)
+            cart_obj.quantity = qty
+            cart_obj.user_id = User.objects.get(email=request.session.get('user'))
+            cart_obj.save()
+
+        email = request.session.get('user')
+        data = UserCart.objects.filter(user_id=User.objects.get(email=email))
+        print(data.values())
+        return render(request, 'cart.html', {'cart': data})
+    else:
+        return redirect('/login')
 
 def buy(request):
     if 'user' in request.session:
         email = request.session.get('user')
         print("aaaaaaaaaaaaaaaaaaaaaa")
         product_details=Order.objects.filter(user_id=User.objects.get(user_id=request.session('user')))
-        total_price = Cart.objects.filter(user_id=User.objects.get(email=request.session.get('user'))).aggregate(
+        total_price = UserCart.objects.filter(user_id=User.objects.get(email=request.session.get('user'))).aggregate(
             total_price=Sum(F('product_id__price') * F('quantity'), output_field=models.DecimalField())
             )['total_price'] or Decimal('0.00')
         print(f"Total price for user : ₹{total_price}")
@@ -111,7 +111,7 @@ def checkout(request):
 
 def dlt_product(request, cart_id):
     print("rtttttttttttttttttttttttttttttt")
-    data = Cart.objects.get(cart_id=cart_id)
+    data = UserCart.objects.get(cart_id=cart_id)
     data.delete()
     return redirect('/cart')
 
@@ -232,7 +232,7 @@ def signup(request):
             data = User(user_name=username, email=email, phone_number=phone_number, password=password)
             data.save()
             print("signup successfully .............!")
-            return redirect('/login/')
+            return redirect('/login')
     else:
         return render(request, 'signup.html')
 
@@ -359,4 +359,4 @@ def buy(request, house_id=None):
 
 def logout(request):
     del request.session['user']
-    return redirect('login')
+    return redirect('/login')

@@ -89,7 +89,10 @@ class ReviewRating(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"ReviewRating item for {self.user_id.user_name}: {self.product_id.product_name}"
+        return f"ReviewRating item for"
 
     class Meta:
         db_table = 'review_rating_table'
+
+
+
