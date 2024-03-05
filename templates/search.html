@@ -47,19 +47,20 @@
 </head>
 <body>
 <section class="nav">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container-fluid">
-            <a class="navbar-brand margin-20" href="/"  style="margin-left: 0.1%;"><h1 style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold;">EVERGLOWY</h1></a>
+            <a class="navbar-brand margin-20" href="/"  style="margin-left: 0.1%;"><h1 style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">EVERGLOWY</h1></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0 width-100">
                 <li class="nav-item margin-20">
-                  <a class="nav-link active" aria-current="page" href="/" id="home">Home</a>
+                  <a class="nav-link active " aria-current="page" href="/" id="home" style="color:rgb(243, 9, 126); font-weight:bolder;">Home</a>
                 </li>
                 <li class="nav-item dropdown margin-20">
-                  <a class="nav-link dropdown-toggle" style="font-weight:bolder;" href="category" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a class="nav-link dropdown-toggle" type="choose" href="category" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Category
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown"  style="color:black;">
@@ -75,26 +76,29 @@
                 <a class="nav-link" href="offers" id="shop">Offers</a>
             </li>
                 <li class="nav-item margin-20"><div class=".search-container">
-              <form method="POST">
-                  {% csrf_token %}
-              <input type="text" value="{{search}}" placeholder="Search.." name="search" style="border-color:green;">
-              <button type="submit" style="height:37px;"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <form method="POST" action="/search">
+                {% csrf_token %}
+              <input type="text" placeholder="Search.." name="search" style="border-color:blue;">
+              <button type="submit" class="btn btn-close-black" style="height:38px; border-color:blue; border-radius:0;"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form></div>
                 </li>
             <li><a href="wishlist"><i class="fa-solid fa-heart margin-20" style="font-size: larger; color: red;   padding-top: 10px;"></i></a></li>
             <li><a href="cart"><i class="fa-solid fa-cart-shopping margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
             <li><a href="profile"><i class="fa-solid fa-user margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
             <li>
-              <form class="d-flex" id="form">
-                <button class="btn btn-outline-success login" type="login" text="Login" >
-                  <a href="{% url 'login' %}" style="color: black;">Login</a>
-                </button>
-            </form>
+              {% if user == 'no user' %}
+                  <a href="/login"  class="btn btn-info" style="color: black;">Login</a>
+                  {% else %}
+                  <a href="/logout" class="btn btn-outline-info" style="color: black;">Logout</a>
+                  <h6>{{user.user_name}}</h6>
+              {% endif %}
             </li>
               </ul>
             </div>
           </div>
-        </nav>
+        </nav><br>
+
+
       </section>
   <div class="sort-dropdown">
       <div class="d-flex my-4 flex-wrap">

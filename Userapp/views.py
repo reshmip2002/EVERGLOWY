@@ -32,12 +32,14 @@ def home_page(request):
 def products(request, id):
     print("dcfvgbhnjm")
     data = Product.objects.select_related('seller_id').prefetch_related('images').filter(product_id=id)
+    print(data.values())
     datas = ReviewRating.objects.filter(product_id=Product.objects.get(product_id=id))
     if 'user' in request.session:
         print("sdfghjvbnhj")
         email = request.session.get('user')
         print(data.values())
         print(f'user : {email}')
+
         if request.method == 'POST':
             print('cart now')
             quantity = request.POST.get('quantity')
@@ -47,7 +49,7 @@ def products(request, id):
             cart_data.user_id = User.objects.get(email=email)
             cart_data.save()
             return redirect('/cart')
-    return render(request, 'single-product.html', {'products': data, 'review': data})
+    return render(request, 'single-product.html', {'products': data, 'review': datas})
 
 
 def cart(request):
@@ -97,8 +99,8 @@ def buy(request):
         #     value = x.quantity * x.product_id.price
         #     amount = amount + value
         #     total_price = amount + 50
-
-        return render(request, 'buynow.html', {'cart': product_details,'total_price': total_price,'address': address})
+        data = UserCart.objects.filter(user_id=User.objects.get(email=email))
+        return render(request, 'buynow.html', {'cart': data,'total_price': total_price,'address': address})
     else:
         return redirect('/login')
 
@@ -179,6 +181,11 @@ def brand(request):
     print(data.values())
     return render(request, 'brand.html', {'datas': data, 'cat': cat})
 
+def all_brands(request):
+    data = Brand.objects.all()
+    print(data.values())
+    return render(request, 'all-brand.html')
+
 
 def wishlist(request):
     print("qwwwwwwwwwwwwwwwwwwwwww")
@@ -204,7 +211,8 @@ def offers(request):
     return render(request, 'offers.html', {'events': events, 'cat': cat})
 
 
-def reviewrating(request):
+def reviewrating(request,product_id):
+    print(product_id)
     if request.method == 'POST':
         rating = request.POST.get('rating')
         review = request.POST.get('review')
@@ -213,10 +221,12 @@ def reviewrating(request):
         data.rating = rating
         data.review = review
         data.user_id = User.objects.get(email=request.session['user'])
+        data.product_id = Product.objects.get(product_id=product_id)
         data.save()
         print("Review successfully  added.............!")
-        return redirect('product/{id}')
-    return render(request, 'reviewrating.html')
+        return redirect(f'/products/{product_id}')
+    else:
+        pass
 
 
 def signup(request):

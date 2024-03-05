@@ -4,10 +4,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>brand page</title>
-    <link rel="stylesheet" type="text/css" href="{% static '/css/homepage.css' %}">
+    <title>All BRANDS</title>
     <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <style>
+        .margin-20{
+            margin-left: 60px;
+        }
+        #shipping{
+            height: 70px;
+            width: 70px;
+        }
+        #brand{
+            height: 50px;
+            width: 50px;
+        }
+        #return{
+            height: 50px;
+            width: 50px;
+        }
+        #payment{
+            height: 50px;
+            width: 50px;
+        }
+        #beauty{
+            height: 50px;
+            width: 50px;
+        }
+        #help{
+            height: 50px;
+            width: 50px;
+        }
+        #pay{
+            height: 30px;
+            width: 200px;
+        }
+        .margin-10{
+            margin-left: 30px;
+        }
+        .pl-5{
+            margin-left: 30px;
+        }
+        h3{
+            font-weight: bold;
+            color: black;
+            padding-left: 20px;
+        }
+        h6{
+            font-weight: 200;
+            color: black;
+            padding-left: 30px;
+        }
+        #home{
+            font-size: large;
+            font-weight: bolder;
+            padding-left: 10px;
+        }
+        #category{
+            font-size: large;
+            font-weight: bolder;
+            padding-left: 10px;
+        }
+        #brand{
+            font-size: large;
+            font-weight: bolder;
+            color: rgb(227, 12, 123);
+            padding-left: 10px;
+
+        }
+        #offer{
+            font-size: large;
+            font-weight: bolder;
+            padding-left: 10px;
+
+        }
+        #shop{
+            font-size: large;
+            font-weight: bolder;
+            padding-left: 10px;
+
+        }
+    </style>
 </head>
 <body>
 
@@ -64,35 +140,181 @@
 
     <section class="top">
         <div class="top-brand">
-            <h3 style="text-align: center; color:rgb(49, 26, 131); font-family:Arial, Helvetica, sans-serif">TOP BRANDS</h3>
+            <h3 style="text-align: center; color:rgb(49, 26, 131); font-family:Arial, Helvetica, sans-serif">ALL BRANDS</h3>
         </div>
     </section><br>
-    <section class="top-brands" style="margin-left:20px;">
-        <div class="row">
-        {% for x in datas %}
-            <div class=" col-md-2 ">
-                <div class="col-lg-3 col-md-2 mb-3" style="margin-left:10px;">
-                  <div class="card" style="width:11rem; height:9rem">
-                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                      data-mdb-ripple-color="light"><br>
-                        <a href="{% url 'search' %}?brand_id={{ x.brand_id }}" class="text-reset" style="text-decoration: none;">
-                            <img src="{{ x.image.url }}" height="100px;" width="160px; ,">
-                        </a>
-                    </div>
-                  </div>
+
+    <section class="all" >
+        <div class="all-brands" >
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>A</h3>
+                    <h6> Acure <br>Advanced Clinical <br>
+                        Alite <br>
+                        All Naturals <br>
+                        Alps Goodness <br>
+                        Amarte <br>
+                        Andalou Naturals <br>
+                        Aqualogica <br>
+                        Art Natural <br>
+                        Australian Body Care <br>
+                        Avya Skincare <br>
+                        Azure
+                    </h6><br>
+                    <h3>B</h3>
+                    <h6>BBLUNT <br>
+                        Beyou <br>
+                        Biotique <br>
+                        Burts Bee
+                    </h6><br>
+                    <h3>C</h3>
+                    <h6>
+                        Cerave <br>
+                        Cetaphil <br>
+                        Chik <br>
+                        Clean & Clear <br>
+                        COSRX
+                    </h6><br>
+                </div>
+                <div class="col-md-2">
+                    <h3>D</h3>
+                    <h6>
+                        Dabur <br>
+                        Derma E <br>
+                        DermDoc <br>
+                        Dot & Key <br>
+                        Dove <br>
+                        Dr.Batars <br>
+                        Dr.Sheths <br>
+                    </h6><br>
+                    <h3>E</h3>
+                    <h6>E.I.F Pure Skin <br>
+                        Elemies <br>
+                        Eminence <br>
+                        ETUDE <br>
+                        Eva Naturals  <br>
+                        Eve Hansen <br>
+                        Everyuth
+                    </h6><br>
+                    <h3>F</h3>
+                    <h6>Faces Canada <br>
+                        First Aid Beauty Skin Rescue <br>
+                        Forest Essential
+                    </h6><br>
+
+
+                </div>
+                <div class="col-md-2">
+                    <h3>G</h3>
+                    <h6>Garnier <br>
+                        Gold Bond <br>
+                        Good vibes
+                    </h6><br>
+                    <h3>H</h3>
+                    <h6>Herbal Luxury <br>
+                        Himalaya
+                    </h6><br>
+                    <h3>I</h3>
+                    <h6>Incolor <br>
+                        Indulekha <br>
+                        Insight <br>
+                        Insta Naturals
+                    </h6><br>
+                    <h3>J</h3>
+                    <h6>Jovees <br>
+                        Joy <br>
+                        Just Herbs</h6><br>
+                    <h3>K</h3>
+                    <h6>KAJA <br>
+                        Kama Ayurveda <br>
+                        Khadi
+                    </h6><br>
+
+                </div>
+                <div class="col-md-2">
+                    <h3>L</h3>
+                    <h6>L.A.Colors <br>
+                        Lakme <br>
+                        La Shield <br>
+                        LiLyana Naturals <br>
+                        Loreal Paris <br>
+                        Lotus Herbals <br>
+                        Love Beauty & Planet
+                    </h6><br>
+                    <h3>M</h3>
+                    <h6>
+                        M.A.C <br>
+                        Madara Organics <br>
+                        Mad Hippie <br>
+                        Mamaearth <br>
+                        Marlowe  <br>
+                        MARS <br>
+                        Mason Naturals <br>
+                        M Caffeine <br>
+                        Minimalist <br>
+                        Murad City <br>
+                        Maybelline Newyork <br>
+                        MyGlamm
+                    </h6> <br>
+                    <h3>N</h3>
+                    <h6>Neals Yard Remedies <br>
+                        Neutriderm <br>
+                        Neutrogena <br>
+                        Nivea <br>
+                        NY Bea</h6> <br>
+
+                </div>
+                <div class="col-md-2">
+                    <h3>O</h3>
+                    <h6>Organic Harvest</h6> <br>
+                    <h3>P</h3>
+                    <h6>
+                        Pacifica <br>
+                        Palmers Skin Care <br>
+                        pilgrim <br>
+                        Plum <br>
+                        Ponds <br>
+                        Proactivmd</h6> <br>
+                    <h3>R</h3>
+                    <h6>Ren Clean Skin Care<br>
+                        RENEE<br>
+                        Revolution Pro<br>
+                        RiRe</h6><br>
+                    <h3>S</h3>
+                    <h6>
+                        Satyrday Skin<br>
+                        Schwarzkopf Professional<br>
+                        Sebamed<br>
+                        Sesa<br>
+                        Simple<br>
+                        Soap Glory<br>
+                        St.Botanica<br>
+                        Sugar<br>
+                        Sugar Pop<br>
+                        sunsilk<br>
+                        Swiss Beauty</h6><br>
+
+                </div>
+                <div class="col-md-2">
+                    <h3>T</h3>
+                    <h6>The Derma Co.<br>
+                        The Moms Co.<br>
+                        Tru Hair<br>
+                        Tyro </h6><br>
+                    <h3>V</h3>
+                    <h6>Vaseline<br>
+                        VLCC</h6><br>
+                    <h3>W</h3>
+                    <h6>Weleda<br>
+                        WOW</h6><br>
+                    <h3>Y</h3>
+                    <h6>Yu-Be</h6><br>
+                    <h3>OTHERS</h3>
+                    <h6>7 Elements</h6><br>
                 </div>
             </div>
-        {% endfor %}
         </div>
-    </section><br>
-    <section class="all">
-        <div class="all-brands">
-            <a href="all_brands" style="padding-left: 75%;">See All Brands.</a>
-        </div>
-    </section><br><br>
-
-  </div>
-  </main>
+    </section>
     <section class="detail">
         <div class="container">
             <div class="row">
@@ -190,9 +412,7 @@
             </footer>
         </div>
     </section>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eM5V9sr5ktoJHnUA2zL4agvbQlGyR0L5L2c8c5z+Owai1Uv5UO8JqC2PahvS/Rj" crossorigin="anonymous"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
