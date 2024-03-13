@@ -67,21 +67,54 @@
     <div class="container">
     <section class="single">
       <div class="row">
-        <div class="col-md-6" style="background-color:brown; color:white;">
-<!--          <div class="card" style="width:30rem; height:30rem; text-align:center; margin-left:30px; margin-top:30px;">-->
+        <div class="col-md-6" style=" color:brown; ">
+          <div  style="width:30rem; height:30rem; text-align:center; font-weight:bold;  font margin-left:30px; margin-top:30px;">
 <!--            <div class="card-body">-->
                         <h3 style="text-align: center;  margin: top 40px; font-style:italic; font-weight:300; ">“The best foundation you can wear is healthy glowing skin.” <br> “Clear skin is a reflection of a healthy mind and body.” <br>
                             “Love the skin you’re in, because that’s the only one you’ve got.” <br> “Your skin is a canvas, make sure you paint it well.” <br>“Skin care is not just about looking good, it’s about feeling good too.”</h3>
 <!--            </div>-->
-<!--          </div>-->
+          </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" style="width:40rem; height:25rem;">
           <img src="{% static 'images/home.jpg' %}" width="100%" height="100%">
         </div>
       </div>
     </section><br><br>
 
+    <section class="recent">
+      <div class="recently_viewed item">
+        <h2 style="font-weight: 900; font-weight: bolder; text-align:center ">RECENTLY VIEWED PRODUCTS</h2>
 
+        <div class="row">
+          {% if user_products %}
+        {% for x in recently_viewed_products|slice:":4" %}
+        <div class="col-lg-3 col-md-3 mb-3">
+          <div class="card" style="width:18rem; height:20rem">
+            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light"><br>
+              <img src="{{ x.images.first.image.url }}" height="150px;" width="150px;">
+              <a href="products/{{x.product_id}}">
+                <div class="hover-overlay">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </div>
+              </a>
+            </div>
+            <div class="card-body"  >
+              <a href="products/{{x.product_id}}" class="text-reset" style="text-decoration: none;">
+                <h5 class="card-title mb-2" style="text-align: left;  font-weight:700">{{x.product_name}}</h5>
+                <p style="text-align: left; font-weight:400">{{x.description}}</p>
+              <h6 class="mb-3 price" style="text-align: left; ">₹{{x.price}}</h6>
+                </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+          {% else %}
+          <p style="text-align:center; color:red;"> No Products Available </p>
+          {% endif %}
+      </div>
+
+      </div>
+    </section><br><br>
 
   <!-- Products -->
     <section>

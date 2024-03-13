@@ -686,14 +686,20 @@ border-radius: 4px;
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 quantity">
-                                                        <form>
-                                                            {% csrf_token %}
-                                                            <div class="form-outline me-1" style="width: 100px;">
-                                                                <p>Qty:
-                                                                    <input style="text-align:center;" type="number" min="1" max="10" value="1" name="quantity">
-                                                                </p>
-                                                            </div>
-                                                        </form>
+<!--                                                        <form>-->
+<!--                                                            {% csrf_token %}-->
+<!--                                                            <div class="form-outline me-1" style="width: 100px;">-->
+<!--                                                                <p>Qty:-->
+<!--                                                                    <input style="text-align:center;" type="number" min="1" max="10" value="1" name="quantity">-->
+<!--                                                                </p>-->
+<!--                                                            </div>-->
+<!--                                                        </form>-->
+                                                        <ul>
+                                                            {% for cart_item in user_cart_items %}
+                                                            <li>{{ cart_item.product_id.product_name }} - Quantity: {{ cart_item.quantity }} - Price: {{ cart_item.product_id.price }}</li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                        <p>Total Price: {{ total_price }}</p>
                                                     </div>
                                                     <div class="col-md-3 price" style="margin-left:15px;">
                                                         <span>₹{{x.product_id.price}}</span>

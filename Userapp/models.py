@@ -94,5 +94,3 @@ class ReviewRating(models.Model):
     class Meta:
         db_table = 'review_rating_table'
 
-
-

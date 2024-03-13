@@ -10,23 +10,45 @@ from Adminapp.models import *
 from Userapp.models import UserAddress, UserCart
 from django.db.models import Q, Sum, F
 from decimal import Decimal
+# from .models import RecentlyViewedProduct
+from django.http import JsonResponse
 
 
 def home_page(request):
     data = Product.objects.select_related('seller_id').prefetch_related('images').all()
     cat = Category.objects.all()
+
     categorized_products = {}
     for y in cat:
         category_products = data.filter(main_category_id=y.main_category_id)
         if category_products.exists():
             categorized_products[y.main_category_name] = category_products
     print(data.values())
+
+    # if request.user.is_authenticated:
+    #     recently_viewed_products = RecentlyViewedProduct.objects.filter(email=request.user)
+    # else:
+    #     recently_viewed_products = None
+
+    # recently_viewed_id = request.session.get('recently_viewed', [])
+    # recently_viewed_products = Product.objects.filter(product_id__in=recently_viewed_id)
+    # if 'product_id' in request.GET:
+    #     product_id = request.GET.get('product_id')
+    #     if product_id in recently_viewed_id:
+    #         recently_viewed_id.append(product_id)
+    #         request.session['recently_viewed'] = recently_viewed_id
+
     users = 'no user'
     if 'user' in request.session:
         current_user = request.session['user']
         users = User.objects.get(email=current_user)
 
-    return render(request, 'homepage.html',{'products': data, 'user': users, 'cat': cat, 'categorized_products': categorized_products})
+    if request.user.is_authenticated:
+        recently_viewed_products = Product.objects.filter(seller_id=request.user.id)
+    else:
+        recently_viewed_products = Product.objects.all()
+
+    return render(request, 'homepage.html',{'products': data, 'user': users, 'cat': cat, 'categorized_products': categorized_products,'recently_viewed_products': recently_viewed_products})
 
 
 def products(request, id):
@@ -49,24 +71,39 @@ def products(request, id):
             cart_data.user_id = User.objects.get(email=email)
             cart_data.save()
             return redirect('/cart')
+
+        # if request.user.is_authenticated:
+        #     RecentlyViewedProduct.objects.create(email=request.user, product=data)
+
     return render(request, 'single-product.html', {'products': data, 'review': datas})
 
 
 def cart(request):
     print("sdfghj")
+    data = Product.objects.select_related('seller_id').prefetch_related('images').filter(product_id=id)
+    print(data.values())
     # product = Product.objects.filter(product_id=request.POST.get('product_id'))
     if 'user' in request.session:
+        print("sdfghjvbnhj")
+        email = request.session.get('user')
+        print(data.values())
+        print(f'user : {email}')
         # cart_items = UserCart.objects.filter(user_id=User.objects.get(email=request.session.get('user')))
         # total_price = cart_items.aggregate(total_price=Sum('product_id__price' * 'quantity'))
         #
-        # # If there are no items in the cart, total_price will be None, so handle it accordingly
-        # total_price = total_price['total_price'] if total_price['total_price'] is not None else 0
+        # email = request.session.get('user')
+        # data = UserCart.objects.filter(user_id=User.objects.get(email=email))
+        # total_price = sum(item.product_id.price * item.quantity for item in data)
         # print(f' total: {total_price}')
+        user_cart_items = UserCart.objects.filter(user_id=request.user)
+        total_price = sum(item.product_id.price * item.quantity for item in user_cart_items)
+
         if request.method == 'POST':
 
             qty = int(request.POST['quantity'])
 
             product_id = int(request.POST["product_id"])
+
             cart_obj = UserCart()
             cart_obj.product_id = Product.objects.get(product_id=product_id)
             cart_obj.quantity = qty
@@ -74,11 +111,42 @@ def cart(request):
             cart_obj.save()
 
         email = request.session.get('user')
+
         data = UserCart.objects.filter(user_id=User.objects.get(email=email))
         print(data.values())
-        return render(request, 'cart.html', {'cart': data})
+        return render(request, 'cart.html', {'user_cart_items': user_cart_items,'cart': data})
     else:
         return redirect('/login')
+
+
+# def cart(request):
+#     if 'user' in request.session:
+#         print("sdfghjvbnhj")
+#         email = request.session.get('user')
+#         print(f'user : {email}')
+#         user_id = User.objects.get(email=request.session.get('user'))
+#         if request.method == "POST":
+#             print("aaaa")
+#
+#             qty = request.POST['quantity']
+#
+#             product_id = request.POST["product_id"]
+#             product_details = Product.objects.get(product_id=product_id)
+#             if not UserCart.objects.filter(product_id=product_id,user_id=user_id).exists():
+#                 cartdata = UserCart(product_id=product_id,user_id=user_id,quantity=qty)
+#                 cartdata.save()
+#                 usercartdetails = UserCart.objects.filter(user_id=user_id)
+#                 return render("cart.html",{'user_cart_items':usercartdetails})
+#             else:
+#                 usercartdetails = UserCart.objects.filter(user_id=user_id)
+#                 total_price = sum(item.product_id.price * item.quantity for item in usercartdetails)
+#                 return render("cart.html",{'user_cart_items':usercartdetails,'total_price':total_price})
+#         else:
+#             usercartdetails = UserCart.objects.filter(user_id=UserCart.objects.get(email=email))
+#         return render("cart.html", {'user_cart_items': usercartdetails})
+#     else:
+#         return redirect('/login')
+
 
 def buy(request):
     if 'user' in request.session:
@@ -99,10 +167,12 @@ def buy(request):
         #     value = x.quantity * x.product_id.price
         #     amount = amount + value
         #     total_price = amount + 50
+
         data = UserCart.objects.filter(user_id=User.objects.get(email=email))
         return render(request, 'buynow.html', {'cart': data,'total_price': total_price,'address': address})
     else:
         return redirect('/login')
+
 
 def checkout(request):
     if 'user' in request.session:
@@ -189,13 +259,36 @@ def all_brands(request):
 
 def wishlist(request):
     print("qwwwwwwwwwwwwwwwwwwwwww")
-    if 'user' in request.session:
-        email = request.session.get('user')
-        data = Wishlist.objects.filter(user_id=User.objects.get(email=request.session['user']))
-        print(data.values())
-        return render(request, 'wishlist.html', {'wishlist': data})
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        print(f'product : {product_id}')
+        if 'user' in request.session:
+            user_id = request.session['user']
+            wishlist_item = Wishlist.objects.filter(email=User.objects.get(user_id=request.session['user']),product_id=Product.objects.get(product_id=product_id))
+            if wishlist_item.exists():
+                print('Product already in wishlist.')
+                return JsonResponse({'success': True, 'message': 'Product already in wishlist.'})
+            else:
+                print('Product added to wishlist.')
+                wishlist_item = Wishlist.objects.create(user_id=User.objects.get(user_name=request.session['user']),product_id=Product.objects.get(Product_id=product_id))
+                wishlist_item.save()
+                return JsonResponse({'success': True, 'message': 'Product added to wishlist.'})
+        return JsonResponse({'success': True})
     else:
-        return redirect('/login')
+        return JsonResponse({'success':False})
+
+    #     return JsonResponse({'message': 'Product added to wishlist successfully!'})
+    # else:
+    #     return JsonResponse({'error': 'Invalid request method'})
+
+
+    # if 'user' in request.session:
+    #     email = request.session.get('user')
+    #     data = Wishlist.objects.filter(user_id=User.objects.get(email=request.session['user']))
+    #     print(data.values())
+    #     return render(request, 'wishlist.html', {'wishlist': data})
+    # else:
+    #     return redirect('/login')
 
 
 def dlt_listproduct(request, list_id):
@@ -208,7 +301,8 @@ def dlt_listproduct(request, list_id):
 def offers(request):
     events = Event.objects.all()
     cat = Category.objects.all()
-    return render(request, 'offers.html', {'events': events, 'cat': cat})
+    data = Product.objects.select_related('product_id').prefetch_related('images').all()
+    return render(request, 'offers.html', {'events': events, 'cat': cat, 'event.offer_set.all': data})
 
 
 def reviewrating(request,product_id):
