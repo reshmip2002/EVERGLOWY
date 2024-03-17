@@ -8,43 +8,190 @@
     <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     <style>
-                .navbar{
-    width: 100%;
-}
-.navbar-brand {
-    font-style: bold;
-    font-size: 80px;
-    color: black;
+        .navbar {
+            width: 100%;
+        }
 
-}
-.btn-outline-success{
-    background-color: rgb(147, 231, 136);
-}
-.width-100{
-    width: 100% !important;
-}
-.margin-20{
-    margin-right: 50px !important;
-}
-.margin-5{
-    margin-left: 20px !important;
-}
-.margin-10{
-    margin-right: 30px !important;
-}
-#navbarDropdown{
-    font-size: large;
-    font-weight: bolder;
-    padding-left: 10px;
-}
-.login{
-    height: 35px;
-    width: 150px;
-}
-.pl-5{
-    padding-left: 20px;
-}
+        .navbar-brand {
+            font-style: bold;
+            font-size: 80px;
+            color: black;
+
+        }
+
+        .btn-outline-success {
+            background-color: rgb(147, 231, 136);
+        }
+
+        .width-100 {
+            width: 100% !important;
+        }
+
+        .margin-20 {
+            margin-right: 50px !important;
+        }
+
+        .margin-5 {
+            margin-left: 20px !important;
+        }
+
+        .margin-10 {
+            margin-right: 30px !important;
+        }
+
+        #navbarDropdown {
+            font-size: large;
+            font-weight: bolder;
+            padding-left: 10px;
+        }
+
+        .login {
+            height: 35px;
+            width: 150px;
+        }
+
+        .pl-5 {
+            padding-left: 20px;
+        }
+
+        .images {
+            display: flex;
+            justify-content: space-between;
+            width: 60%;
+            height: 20%;
+            margin-top: 15px;
+        }
+
+        .small-img {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border: 1.5px solid black;
+        }
+
+        .small-img img {
+            width: inherit;
+            cursor: pointer;
+        }
+
+        .small-img:hover img {
+            transform: scale(1.2);
+        }
+
+        .payment {
+            font-style: bold;
+        }
+
+        #shipping {
+            width: 70px;
+            height: 60px;
+        }
+
+        #return {
+            width: 50px;
+            height: 50px;
+        }
+
+        #brand {
+            width: 50px;
+            height: 50px;
+        }
+
+        #srb {
+            font-size: large;
+            font-style: normal;
+        }
+
+        #oro {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #payment {
+            margin-left: 100px;
+            height: 70px;
+            width: 60px;
+
+        }
+
+        #beauty {
+            height: 60px;
+            width: 80px;
+
+        }
+
+        #help {
+            height: 60px;
+            width: 70px;
+
+        }
+
+        #sbh {
+            font-size: larger;
+            font-style: normal;
+            margin-left: 3%;
+        }
+
+        #agt {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #epn {
+            font-size: larger;
+            font-style: normal;
+        }
+
+        #apf {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #pay {
+            margin-left: 100px;
+            height: 40px;
+            width: 160px;
+        }
+
+        #net {
+            margin-left: 100px;
+            font-size: small;
+            font-style: normal;
+        }
+
+        #cash {
+            margin-left: 100px;
+            font-size: small;
+            font-style: normal;
+        }
+
+        .foots {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .copy {
+            text-align: center;
+        }
+
+        .connect {
+            height: 20px;
+            width: 10px;
+        }
+
+        .center {
+            display: block;
+            height: 60%;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
     </style>
+
 </head>
 <body>
 <section class="nav">
@@ -144,6 +291,107 @@
     </div>
     </div>
 </section>
+
+    <section class="line">
+        <div class="linee" style="background-color:black; height:3px; width:100%;"></div>
+      </section><br><br>
+    <section class="detail">
+        <div class="container">
+            <div class="row">
+                <div class="col-4"><br>
+                    <img id="shipping" src="{% static 'images/shipping.png' %}">
+                    <h5 id="srb">Free Shipping</h5>
+                    <h6 id="oro">On orders above ₹499</h6>
+                </div>
+                <div class="col-4"><br>
+                    <img id="return" src="{% static 'images/returns.webp' %}">
+                    <h5 id="srb">Easy Return</h5>
+                    <h6 id="oro">100% Return in 5 Days</h6>
+                </div>
+                <div class="col-4"><br>
+                    <img id="brand" src="{% static 'images/brand1.png' %}">
+                    <h5 id="srb">700+ Brands</h5>
+                    <h6 id="oro">Over 10000+ Genuine Products</h6>
+                </div>
+            </div>
+        </div>
+    </section><br>
+    <section class="secure">
+        <div class="container">
+            <div class="row">
+                <div class="col-4"><br>
+                    <img id="payment" src="{% static 'images/secure payment.png' %}">
+                    <h3 id="sbh">100% Secure Payment</h3>
+                    <h6 id="agt">All Online Payments are Accepted</h6>
+                </div>
+                <div class="col-4"><br>
+                    <img id="beauty" src="{% static 'images/beauty assist.png' %}">
+                    <h3 id="sbh">Beauty Assistant</h3>
+                    <h6 id="agt">Tell me what you are <br> looking for and <br>
+                        i will work my magic <br> to help you find your <br>
+                        perfect match.</h6>
+                </div>
+                <div class="col-4"><br>
+                    <img id="help" src="{% static 'images/help center.png' %}">
+                    <h3 id="sbh">Help Center</h3>
+                    <h6 id="agt">Got a question? <br>Look no further. <br>
+                        Browse FAQs or <br>submit your query.</h6>
+                </div>
+            </div>
+        </div>
+    </section><br>
+    <section class="about">
+        <div class="about-us">
+            <div class="container ">
+                <div class="row">
+                    <div class="col">
+                        <h5 id="epn"
+                            style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold; font-size:Larger;">
+                            <br>EVERGLOWY
+                        </h5>
+                        <h6 id="apf">About us<br>Careers<br>Press<br>Sitemap<br>Compilance</h6>
+                    </div>
+                    <div class="col">
+                        <h5 id="epn"><br>POLICY INFO</h5>
+                        <h6 id="apf">Privacy Policy<br>Terms Of Use<br>Return & Cancellation<br>Policy</h6>
+                    </div>
+                    <div class="col">
+                        <h5 id="epn"><br>NEED HELP?</h5>
+                        <h6 id="apf">FAQ's<br>Contact Us</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><br>
+    <section class="pay">
+        <div class="pay">
+            <div class="row">
+                <div class="col">
+                    <h5 class="payment pl-5" style="margin-left:90px;">PAYMENT</h5>
+                    <img id="pay" src="{% static 'images/Screenshot 2024-01-10 183402.png' %}"><br>
+                    <h6 id="net">NET BANKING </h6>
+                    <h6 id="cash">₹ CASH ON DELIVERY</h6>
+                </div>
+                <div class="col">
+                    <h5>CONNECT</h5>
+                    <i class="fa-brands fa-facebook-f margin-10"></i>
+                    <i class="fa-brands fa-facebook-messenger  margin-10"></i>
+                    <i class="fa-brands fa-instagram  margin-10"></i>
+                    <i class="fa-regular fa-envelope  margin-10"></i>
+                    <i class="fa-brands fa-whatsapp margin-10"></i>
+                    <i class="fa-brands fa-twitter margin-10"></i>
+                    <i class="fa-brands fa-youtube margin-10"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="foot">
+        <div class="foots">
+            <footer class="bg-dark text-light p-1">
+                <h6 style="text-align: center;">Copyright ©2024 Everglowy.All Rights Reserved.</h6>
+            </footer>
+        </div>
+    </section>
      <script>
         $(document).ready(function(){
             $('.owl-carousel').owlCarousel({

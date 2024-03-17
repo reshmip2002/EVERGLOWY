@@ -8,16 +8,7 @@
     <title>single</title>
     <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-dfDw0BO6jbY5UBPIe3W7jASzFz5SXM4PoLMT1Z9ZqY4UZqZbVoFFlJ7A/KW1mCiR" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-rDlOetVpe7bTDCtFyv6Tt3gSfdhXjfvVGmY7SvGnP5NVBhA5+iEHP8UwvGmLeXU1VJPI67DKgh8s/XmNL4Y4cg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-<!--    <script src="{% static '/js/script.js' %}"></script>-->
     <style>
         .navbar {
             width: 100%;
@@ -310,9 +301,6 @@
                         </strong>
 
                         <p class="lead">
-                            <!--                        <span class="me-1">-->
-                            <!--                            <del>$200</del>-->
-                            <!--                        </span>-->
                             <span>₹{{ x.price }}</span>
                         </p>
                         <h5 style="font-style: bold;">Expiry Date : {{ x.expiry_date }}</h5><br>
@@ -323,7 +311,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half"></i>
                         </div>
-                        <form method="POST">
+                        <form method="POST" id="productForm_{{ x.product_id }}" data-product-id="{{ x.product_id }}" class="wishlist-form">
                             {% csrf_token %}
                             <div class="form-outline me-1" style="width: 100px;">
 
@@ -332,15 +320,10 @@
                                 </p>
 
                             </div><br>
-
-
-                            <button formaction="/wishlist" class="wishlist-btn d-inline btn btn-outline-info px-5 py-2" data-product-id="{{x.product_id}}" style="text-decoration:none; color:black;">Wishlist</button>
-
-
+                            <button formaction="/wishlist/{{x.product_id}}" class="d-inline btn btn-outline-info px-5 py-2" style="text-decoration:none; color:black;">Wishlist</button>
+<!--                            <button type="button" class="d-inline btn btn-outline-info px-5 py-2 wishlist-btn" style="text-decoration:none; color:black;">Wishlist</button>-->
                             <input type="hidden" name="product_id" value="{{x.product_id}}" />
-                            <button formaction="/cart" class="px-5 py-2 btn btn-primary text-decoration-none">Add to
-                                Cart</button>
-
+                            <button formaction="/cart" class="px-5 py-2 btn btn-primary text-decoration-none">Add to Cart</button>
                             <button formaction="/buy " class="px-5 py-2 btn btn-success" style="text-decoration:none; color:white;">Buy Now</button>
                         </form>
 
@@ -434,7 +417,9 @@
     </main>
 
 
-
+    <section class="line">
+        <div class="linee" style="background-color:black; height:3px; width:100%;"></div>
+      </section><br><br>
     <section class="detail">
         <div class="container">
             <div class="row">
@@ -528,7 +513,7 @@
     <section class="foot">
         <div class="foots">
             <footer class="bg-dark text-light p-1">
-                <h6 style="text-align: center;">Copyright ©2024 Everglowy.All Rights Reserved.</h7>
+                <h6 style="text-align: center;">Copyright ©2024 Everglowy.All Rights Reserved.</h6>
             </footer>
         </div>
     </section>
@@ -542,33 +527,6 @@
     function showImg(pic){
         bigImg.src= pic;
     }
-
-<!--    WISHLIST    -->
-
-    $(document).ready(function() {
-  $(".wishlist-btn").click(function() {
-    var productId = $(this).data("product-id");
-    $.ajax({
-      type: "POST",
-      url: "/add-to-wishlist/",
-      data: {
-        'product_id': productId,
-        csrfmiddlewaretoken: '{{ csrf_token }}'
-      },
-      dataType: 'json',
-      success: function(data) {
-        if (data.success) {
-
-          // Change the color of the heart icon to indicate it's added to the wishlist
-          $(this).find("i").removeClass("fa-heart-o").addClass("fa-heart").css("color", "red");
-        } else {
-          // Handle error
-        }
-      }
-    });
-  });
-});
-
 
 
 </script>

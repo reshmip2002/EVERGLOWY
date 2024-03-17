@@ -637,7 +637,7 @@ border-radius: 4px;
 
 					<div class="option2 nav-option">
 						<img src= "{% static 'images/order-png-image.png' %}" class="nav-img" alt="orders">
-						<a href="orders" style="text-decoration:none; color:black;"><h3> Orders</h3></a>
+						<a href="order" style="text-decoration:none; color:black;"><h3> Orders</h3></a>
 					</div>
 
 					<div class="nav-option option3">
@@ -682,32 +682,28 @@ border-radius: 4px;
                                                             <div class="product-info">
                                                                 <h5 style="margin-left:15px;">{{x.product_id.product_name}} </h5>
                                                                 <div style="margin-left:15px;">{{x.product_id.description}}  </div>
+                                                                <div style="margin-left:15px;">₹{{x.product_id.price}}</div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 quantity">
-<!--                                                        <form>-->
-<!--                                                            {% csrf_token %}-->
-<!--                                                            <div class="form-outline me-1" style="width: 100px;">-->
-<!--                                                                <p>Qty:-->
-<!--                                                                    <input style="text-align:center;" type="number" min="1" max="10" value="1" name="quantity">-->
-<!--                                                                </p>-->
-<!--                                                            </div>-->
-<!--                                                        </form>-->
-                                                        <ul>
-                                                            {% for cart_item in user_cart_items %}
-                                                            <li>{{ cart_item.product_id.product_name }} - Quantity: {{ cart_item.quantity }} - Price: {{ cart_item.product_id.price }}</li>
-                                                            {% endfor %}
-                                                        </ul>
-                                                        <p>Total Price: {{ total_price }}</p>
+                                                        <form>
+                                                            {% csrf_token %}
+                                                            <div class="form-outline me-1" style="width: 100px;">
+                                                                <p>Qty:
+                                                                    <input style="text-align:center;" type="number" min="1" max="10" value="{{x.quantity}}" name="quantity">
+                                                                </p>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                     <div class="col-md-3 price" style="margin-left:15px;">
-                                                        <span>₹{{x.product_id.price}}</span>
+
+                                                        <span> ₹{{  x.total_price_single }}</span>
                                                     </div><br>
                                                     <form style="margin-left:15px;">
                                                         {% csrf_token %}
                                                         <a href="/dlt_product/{{x.cart_id}}" class="btn btn-outline-white px-5 py-2" style="text-decoration:none; color:black;padding-left:20px;">Remove</a>
-                                                        <a href="/wishlist" class="d-inline btn btn-outline-info px-5 py-2" style="text-decoration:none; color:black;padding-left:20px;">Wishlist</a>
+                                                        <a href="/wishlist/{{x.list_id}}" class="d-inline btn btn-outline-info px-5 py-2" style="text-decoration:none; color:black;padding-left:20px;">Wishlist</a>
                                                         <a href="/buy" class="btn btn-info px-5 py-2"  style="text-decoration:none; color:black; padding-left:20px;">Buy Now</a>
                                                     </form>
                                                 </div><br><br>
@@ -721,10 +717,11 @@ border-radius: 4px;
                         <div class="col-sm-4 ">
                             <div class="summary">
                                 <h3>Price Details</h3>
-                                <div class="summary-item" value="{{x.total_price}}"><span class="text">Amount:</span><span class="price" value="{{x.price}}">₹ {{amount}}</span></div>
-                                <div class="summary-item"><span class="text">Shipping Charge:</span><span class="price">₹50</span></div>
+
+                                <div class="summary-item"><span class="text">Amount:</span><span class="price" >₹ {{total_price}}</span></div>
+                                <div class="summary-item"><span class="text">Shipping Charge:</span><span class="price">₹0</span></div>
                                 <div class="summary-item"><span class="text">TOTAL MRP:</span><span class="price" name="total_price" value="total_price">₹ {{total_price}}</span></div><br>
-                                <a href="/checkout" class="btn btn-primary  " style="text-decoration:none; color:black;">Checkout</a>
+                                <a href="/buy" style="text-decoration:none; color:black;"><button type="submit" class="btn btn-primary" >Place Order</button></a>
                             </div>
                         </div>
                     </div>

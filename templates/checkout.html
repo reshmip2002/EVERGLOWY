@@ -3,308 +3,438 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/homepage.css' %}">
     <script src="https://kit.fontawesome.com/8ba53d469b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     <style>
-        body{
-    background: linear-gradient(110deg, #BBDEFB 60%,#42A5F5  60%);
-}
+        .navbar {
+            width: 100%;
+        }
 
-.shop{
-    font-size: 10px;
-}
+        .navbar-brand {
+            font-style: bold;
+            font-size: 80px;
+            color: black;
 
-.space{
-    letter-spacing: 0.8px !important;
-}
+        }
 
-.second a:hover {
-    color: rgb(92, 92, 92) ;
-}
+        .btn-outline-success {
+            background-color: rgb(147, 231, 136);
+        }
 
-.active-2 {
-    color: rgb(92, 92, 92)
-}
+        .width-100 {
+            width: 100% !important;
+        }
 
+        .margin-20 {
+            margin-right: 50px !important;
+        }
 
-.breadcrumb>li+li:before {
-    content: "" !important
-}
+        .margin-5 {
+            margin-left: 20px !important;
+        }
 
-.breadcrumb {
-    padding: 0px;
-    font-size: 10px;
-    color: #aaa !important;
-}
+        .margin-10 {
+            margin-right: 30px !important;
+        }
 
-.first {
-    background-color: white ;
-}
+        #navbarDropdown {
+            font-size: large;
+            font-weight: bolder;
+            padding-left: 10px;
+        }
 
-a {
-    text-decoration: none !important;
-    color: #aaa ;
-}
+        .login {
+            height: 35px;
+            width: 150px;
+        }
 
-.btn-lg,.form-control-sm:focus,
-.form-control-sm:active,
-a:focus,a:active {
-    outline: none !important;
-    box-shadow: none !important
-}
+        .pl-5 {
+            padding-left: 20px;
+        }
 
-.form-control-sm:focus{
-    border:1.5px solid #4bb8a9 ;
-}
+        .images {
+            display: flex;
+            justify-content: space-between;
+            width: 60%;
+            height: 20%;
+            margin-top: 15px;
+        }
 
-.btn-group-lg>.btn, .btn-lg {
-    padding: .5rem 0.1rem;
-    font-size: 1rem;
-    border-radius: 0;
-    color: white !important;
-    background-color: #4bb8a9;
-    height: 2.8rem !important;
-    border-radius: 0.2rem !important;
-}
+        .small-img {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border: 1.5px solid black;
+        }
 
-.btn-group-lg>.btn:hover, .btn-lg:hover {
-    background-color: #26A69A;
-}
+        .small-img img {
+            width: inherit;
+            cursor: pointer;
+        }
 
-.btn-outline-primary{
-    background-color: #fff !important;
-    color:#4bb8a9 !important;
-    border-radius: 0.2rem !important;
-    border:1px solid #4bb8a9;
-}
+        .small-img:hover img {
+            transform: scale(1.2);
+        }
 
-.btn-outline-primary:hover{
-    background-color:#4bb8a9  !important;
-    color:#fff !important;
-    border:1px solid #4bb8a9;
-}
+        .payment {
+            font-style: bold;
+        }
 
-.card-2{
-    margin-top: 40px !important;
-}
+        #shipping {
+            width: 70px;
+            height: 60px;
+        }
 
-.card-header{
-    background-color: #fff;
-    border-bottom:0px solid #aaaa !important;
-}
+        #return {
+            width: 50px;
+            height: 50px;
+        }
 
-p{
-    font-size: 13px ;
-}
+        #brand {
+            width: 50px;
+            height: 50px;
+        }
 
-.small{
-    font-size: 9px !important;
-}
+        #srb {
+            font-size: large;
+            font-style: normal;
+        }
 
-.form-control-sm {
-    height: calc(2.2em + .5rem + 2px);
-    font-size: .875rem;
-    line-height: 1.5;
-    border-radius: 0;
-}
+        #oro {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
 
-.cursor-pointer{
-    cursor: pointer;
-}
+        #payment {
+            margin-left: 100px;
+            height: 70px;
+            width: 60px;
 
-.boxed {
-    padding: 0px 8px 0 8px ;
-    background-color: #4bb8a9;
-    color: white;
-}
+        }
 
-.boxed-1{
-    padding: 0px 8px 0 8px ;
-    color: black !important;
-    border: 1px solid #aaaa;
-}
+        #beauty {
+            height: 60px;
+            width: 80px;
 
-.bell{
-    opacity: 0.5;
-    cursor: pointer;
-}
+        }
 
-@media (max-width: 767px) {
-    .breadcrumb-item+.breadcrumb-item {
-        padding-left: 0
-    }
-}
+        #help {
+            height: 60px;
+            width: 70px;
+
+        }
+
+        #sbh {
+            font-size: larger;
+            font-style: normal;
+            margin-left: 3%;
+        }
+
+        #agt {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #epn {
+            font-size: larger;
+            font-style: normal;
+        }
+
+        #apf {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #pay {
+            margin-left: 100px;
+            height: 40px;
+            width: 160px;
+        }
+
+        #net {
+            margin-left: 100px;
+            font-size: small;
+            font-style: normal;
+        }
+
+        #cash {
+            margin-left: 100px;
+            font-size: small;
+            font-style: normal;
+        }
+
+        .foots {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .copy {
+            text-align: center;
+        }
+
+        .connect {
+            height: 20px;
+            width: 10px;
+        }
+
+        .center {
+            display: block;
+            height: 60%;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
     </style>
 </head>
 <body>
-<section class="checkout">
-    <div class="buy-now">
-        <div class=" container-fluid my-5 ">
-    <div class="row justify-content-center ">
-        <div class="col-xl-10">
-            <div class="card shadow-lg ">
-                <div class="row p-2 mt-3 justify-content-between mx-sm-2">
-                    <div class="col">
-                        <h5 class="text-muted space mb-0 shop"> </h5>
-                    </div>
-                    <div class="col">
-                        <div class="row justify-content-start ">
-                            <div class="col">
-                                <a href="/" style="text-decoration:none;color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold;"><h1>EVERGLOWY</h1></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <img class="irc_mi img-fluid bell" src="https://i.imgur.com/uSHMClk.jpg" width="30" height="30"  >
-                    </div>
-                </div>
-                <div class="row  mx-auto justify-content-center text-center">
-                    <div class="col-12 mt-3 ">
-                        <nav aria-label="breadcrumb" class="second ">
-                            <ol class="breadcrumb indigo lighten-6 first  ">
-                                <li class="breadcrumb-item font-weight-bold "><a class="black-text text-uppercase " href="/"><span class="mr-md-3 mr-1">BACK TO SHOP</span></a><i class="fa fa-angle-double-right " aria-hidden="true"></i></li>
-                                <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase" href="/cart"><span class="mr-md-3 mr-1">SHOPPING BAG</span></a><i class="fa fa-angle-double-right text-uppercase " aria-hidden="true"></i></li>
-                                <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase active-2" href="/buy"><span class="mr-md-3 mr-1">CHECKOUT</span></a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-
-                <div class="row justify-content-around">
-                    <div class="col-md-5">
-                        <div class="card border-0">
-                            <div class="card-header pb-0">
-                                <h2 class="card-title space ">Checkout</h2>
-                                <p class="card-text text-muted mt-4  space">SHIPPING DETAILS</p>
-                                <hr class="my-0">
-                            </div>
-                            <div class="card-body">
-                                {% for x in address %}
-                                <div class="row justify-content-between">
-                                    <div class="col-auto mt-0"><p><b>{{x.house_name}}<br>{{x.place}}<br>{{x.pin}}<br>{{x.city}}</b></p></div>
-                                {% endfor %}
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col"><p class="text-muted mb-2">PAYMENT DETAILS</p><hr class="mt-0"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="NAME" class="small text-muted mb-1">NAME ON CARD</label>
-                                    <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="BBBootstrap Team">
-                                </div>
-                                <div class="form-group">
-                                    <label for="NAME" class="small text-muted mb-1">CARD NUMBER</label>
-                                    <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="4534 5555 5555 5555">
-                                </div>
-                                <div class="row no-gutters">
-                                    <div class="col-sm-6 pr-sm-2">
-                                        <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1">VALID THROUGH</label>
-                                            <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="06/21">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1">CVC CODE</label>
-                                            <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="183">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mb-md-5">
-                                    <div class="col">
-                                        <button type="button" name="" id="" class="btn  btn-lg btn-block ">PURCHASE $37 SEK</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="card border-0 ">
-                            <div class="card-header card-2">
-                                <p class="card-text text-muted mt-md-4  mb-2 space">YOUR ORDER <span class=" small text-muted ml-2 cursor-pointer">EDIT SHOPPING BAG</span> </p>
-                                <hr class="my-2">
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="row  justify-content-between">
-                                    <div class="col-auto col-md-7">
-                                        <div class="media flex-column flex-sm-row">
-                                            <img class=" img-fluid" src="https://i.imgur.com/6oHix28.jpg" width="62" height="62">
-                                            <div class="media-body  my-auto">
-                                                <div class="row ">
-                                                    <div class="col-auto"><p class="mb-0"><b>EC-GO Bag Standard</b></p><small class="text-muted">1 Week Subscription</small></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class=" pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">2</p></div>
-                                    <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>179 SEK</b></p></div>
-                                </div>
-                                <hr class="my-2">
-                                <div class="row  justify-content-between">
-                                    <div class="col-auto col-md-7">
-                                        <div class="media flex-column flex-sm-row">
-                                            <img class=" img-fluid " src="https://i.imgur.com/9MHvALb.jpg" width="62" height="62">
-                                            <div class="media-body  my-auto">
-                                                <div class="row ">
-                                                    <div class="col"><p class="mb-0"><b>EC-GO Bag Standard</b></p><small class="text-muted">2 Week Subscription</small></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed">3</p></div>
-                                    <div class="pl-0 flex-sm-col col-auto my-auto"><p><b>179 SEK</b></p></div>
-                                </div>
-                                <hr class="my-2">
-                                <div class="row  justify-content-between">
-                                    <div class="col-auto col-md-7">
-                                        <div class="media flex-column flex-sm-row">
-                                            <img class=" img-fluid " src="https://i.imgur.com/6oHix28.jpg" width="62" height="62">
-                                            <div class="media-body  my-auto">
-                                                <div class="row ">
-                                                    <div class="col"><p class="mb-0"><b>EC-GO Bag Standard</b></p><small class="text-muted">2 Week Subscription</small></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">2</p></div>
-                                    <div class="pl-0 flex-sm-col col-auto my-auto"><p><b>179 SEK</b></p></div>
-                                </div>
-                                <hr class="my-2">
-                                <div class="row ">
-                                    <div class="col">
-                                        <div class="row justify-content-between">
-                                            <div class="col-4"><p class="mb-1"><b>Subtotal</b></p></div>
-                                            <div class="flex-sm-col col-auto"><p class="mb-1"><b>179 SEK</b></p></div>
-                                        </div>
-                                        <div class="row justify-content-between">
-                                            <div class="col"><p class="mb-1"><b>Shipping</b></p></div>
-                                            <div class="flex-sm-col col-auto"><p class="mb-1"><b>0 SEK</b></p></div>
-                                        </div>
-                                        <div class="row justify-content-between">
-                                            <div class="col-4"><p ><b>Total</b></p></div>
-                                            <div class="flex-sm-col col-auto"><p  class="mb-1"><b>537 SEK</b></p> </div>
-                                        </div><hr class="my-0">
-                                    </div>
-                                </div>
-                                <div class="row mb-5 mt-4 ">
-                                    <div class="col-md-7 col-lg-6 mx-auto"><button type="button" class="btn btn-block btn-outline-primary btn-lg">ADD GIFT CODE</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand margin-20" href="/"  style="margin-left: 0.1%;"><h1 style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold">EVERGLOWY</h1></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0 width-100">
+                <li class="nav-item margin-20">
+                  <a class="nav-link active " aria-current="page" href="/" id="home" style="color:rgb(243, 9, 126); font-weight:bolder;">Home</a>
+                </li>
+                <li class="nav-item dropdown margin-20">
+                  <a class="nav-link dropdown-toggle" type="choose" href="category" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Category
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown"  style="color:black;">
+                    {% for x in cat %}
+                    <li><a class="dropdown-item" href="category/{{x.main_category_id}}" style="color:black;">{{x.main_category_name}}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
+                <li class="nav-item margin-20">
+                  <a class="nav-link" href="brand" id="brand">Brand</a>
+              </li>
+              <li class="nav-item margin-20">
+                <a class="nav-link" href="offers" id="shop">Offers</a>
+            </li>
+                <li class="nav-item margin-20"><div class=".search-container">
+              <form method="POST" action="/search">
+                {% csrf_token %}
+              <input type="text" placeholder="Search.." name="search" style="border-color:blue;">
+              <button type="submit" class="btn btn-close-black" style="height:38px; border-color:blue; border-radius:0;"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form></div>
+                </li>
+            <li><a href="wishlist"><i class="fa-solid fa-heart margin-20" style="font-size: larger; color: red;   padding-top: 10px;"></i></a></li>
+            <li><a href="cart"><i class="fa-solid fa-cart-shopping margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
+            <li><a href="profile"><i class="fa-solid fa-user margin-20" style="font-size: larger;  color: black; padding-top: 10px;"></i></a></li>
+            <li>
+              {% if user == 'no user' %}
+                  <a href="/login"  class="btn btn-info" style="color: black;">Login</a>
+                  {% else %}
+                  <a href="/logout" class="btn btn-outline-info" style="color: black;">Logout</a>
+                  <h6>{{user.user_name}}</h6>
+              {% endif %}
+            </li>
+              </ul>
             </div>
+          </div>
+        </nav><br>
+
+
+
+   <!--Main layout-->
+  <main>
+<div class="container">
+
+    <div class="row">
+        <!-- address Section -->
+         <div class="col-md-4">
+        <div class="payment-section">
+            <div class="card" style="width:25rem; height:20rem">
+                <h4 style="text-align:center; margin-top:15px;">Address</h4>
+                <div class="hover-overlay">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </div>
+
+        <div class="card-body"  >
+            {% for x in address|slice:":1" %}
+            <p>{{x.house_name}}<br>
+                {{x.house_number}}<br>
+                {{x.place}}<br>
+                {{x.post}}<br>
+                {{x.pin}}<br>
+                {{x.landmark}}<br>
+                {{x.city}}<br>
+            </p>
+            {% endfor %}
+        </div>
+            </div>
+        </div>
+        </div>
+        <!-- Payment Section -->
+        <div class="col-md-4">
+        <div class="payment-section">
+            <div class="card" style="width:25rem; height:20rem">
+                <h4 style="text-align:center; margin-top:15px;">Choose Payment Method</h4>
+                <div class="hover-overlay">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </div>
+
+        <div class="card-body"  >
+
+            <form id="payment-form" style="margin-left:10px;">
+                {% csrf_token %}
+
+                <input type="radio" id="cash" name="cash" value="cash" style="margin-left:10px;">
+                <label for="cash">Cash On Delivery</label><br><br>
+
+                <input type="radio" id="online" name="address" value="online" style="margin-left:10px;">
+                <label for="online">Google Pay</label><br><br><br><br><br><br>
+
+                <button class="btn btn-success" type="submit">Proceed to Pay</button>
+            </form>
+
+        </div>
+            </div>
+        </div>
+        </div>
+        <!-- Product Details Section -->
+        <div class="col-md-4">
+        <div class="product-section">
+            <div class="card" style="width:25rem; height:20rem">
+                <img src="cc" height="10px;" width="10px;">
+                <div class="hover-overlay">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                </div>
+
+            <div class="card-body"  >
+                {% if cart %}
+                <div class="summary-item"><span class="text">Amount:</span><span class="price" > ₹{{total_price}}</span></div>
+                <div class="summary-item"><span class="text">Shipping Charge:</span><span class="price"> ₹0</span></div>
+                <div class="summary-item"><span class="text">TOTAL MRP:</span><span class="price" name="total_price" value="total_price"> ₹{{total_price}}</span></div><br>
+                {% endif %}
+            </div>
+            </div>
+            <!-- Add more product details as needed -->
         </div>
     </div>
     </div>
     </div>
-</section>
+  </main><br><br>
+        <section class="line">
+        <div class="linee" style="background-color:black; height:3px; width:100%;"></div>
+      </section><br><br>
+    <section class="detail">
+      <div class="container">
+        <div class="row">
+          <div class="col-4"><br>
+            <img id="shipping" src="{% static 'images/shipping.png' %}">
+            <h5 id="srb">Free Shipping</h5>
+            <h6 id="oro">On orders above ₹499</h6>
+          </div>
+          <div class="col-4"><br>
+          <img id="return" src="{% static 'images/returns.webp' %}">
+          <h5 id="srb">Easy Return</h5>
+          <h6 id="oro">100% Return in 5 Days</h6>
+          </div>
+          <div class="col-4"><br>
+          <img id="brand" src="{% static 'images/brand1.png' %}">
+          <h5 id="srb">700+ Brands</h5>
+          <h6 id="oro">Over 10000+ Genuine Products</h6>
+          </div>
+        </div>
+      </div>
+    </section><br>
+    <section class="secure">
+      <div class="container">
+        <div class="row">
+          <div class="col-4"><br>
+            <img id="payment" src="{% static 'images/secure payment.png' %}">
+            <h3 id="sbh">100% Secure Payment</h3>
+            <h6 id="agt">All Online Payments are Accepted</h6>
+          </div>
+          <div class="col-4"><br>
+            <img id="beauty" src="{% static 'images/beauty assist.png' %}">
+            <h3  id="sbh">Beauty Assistant</h3>
+            <h6 id="agt">Tell me what you are <br> looking for and <br>
+                i will work my magic <br> to help you find your <br>
+                perfect match.</h6>
+          </div>
+          <div class="col-4"><br>
+            <img id="help" src="{% static 'images/help center.png' %}">
+            <h3  id="sbh">Help Center</h3>
+            <h6 id="agt">Got a question? <br>Look no further. <br>
+                Browse FAQs or <br>submit your query.</h6>
+          </div>
+        </div>
+      </div>
+    </section><br>
+    <section class="about">
+      <div class="about-us">
+        <div class="container ">
+          <div class="row">
+            <div class="col">
+              <h5 id="epn" style="color: rgb(17, 77, 17); font-family:'Courier New', Courier, monospace; font-weight:bold; font-size:Larger;"><br>EVERGLOWY</h5>
+              <h6 id="apf">About us<br>Careers<br>Press<br>Sitemap<br>Compilance</h6>
+            </div>
+            <div class="col">
+              <h5  id="epn"><br>POLICY INFO</h5>
+              <h6 id="apf">Privacy Policy<br>Terms Of Use<br>Return & Cancellation<br>Policy</h6>
+            </div>
+            <div class="col">
+              <h5 id="epn"><br>NEED HELP?</h5>
+              <h6 id="apf">FAQ's<br>Contact Us</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><br>
+    <section class="pay">
+      <div class="pay">
+        <div class="row">
+          <div class="col">
+            <h5 class="payment pl-5">PAYMENT</h5>
+            <img id="pay" src="{% static 'images/Screenshot 2024-01-10 183402.png' %}"><br>
+            <h6 id="net">NET BANKING </h6>
+            <h6 id="cash">₹ CASH ON DELIVERY</h6>
+          </div>
+          <div class="col">
+            <h5>CONNECT</h5>
+            <i class="fa-brands fa-facebook-f margin-10"></i>
+            <i class="fa-brands fa-facebook-messenger  margin-10"></i>
+            <i class="fa-brands fa-instagram  margin-10"></i>
+            <i class="fa-regular fa-envelope  margin-10"></i>
+            <i class="fa-brands fa-whatsapp margin-10"></i>
+            <i class="fa-brands fa-twitter margin-10"></i>
+            <i class="fa-brands fa-youtube margin-10"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="foot">
+      <div class="foots" style="width:100%">
+        <footer class="bg-dark text-light p-1" style="width:100%">
+          <h7 style="text-align: center;width:100%">Copyright ©2024 Everglowy.All Rights Reserved.</h7>
+        </footer>
+      </div>
+    </section>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-eM5V9sr5ktoJHnUA2zL4agvbQlGyR0L5L2c8c5z+Owai1Uv5UO8JqC2PahvS/Rj" crossorigin="anonymous"></script>
+    <script>
+         document.addEventListener('DOMContentLoaded', function () {
+            var paymentForm = document.getElementById('payment-form');
+            paymentForm.addEventListener('submit', function (event) {
+                var selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+                console.log('Selected Payment Method:', selectedPayment);
+                });
+        });
+    </script>
 </body>
 </html>

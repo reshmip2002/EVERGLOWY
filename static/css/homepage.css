@@ -1,161 +1,187 @@
-.navbar{
-    width: 100%;
-}
-.navbar-brand {
-    font-style: bold;
-    font-size: 80px;
-    color: black;
 
-}
-.btn-outline-success{
-    background-color: rgb(147, 231, 136);
-}
-.width-100{
-    width: 100% !important;
-}
-.margin-20{
-    margin-right: 50px !important;
-}
-.margin-5{
-    margin-left: 20px !important;
-}
-.margin-10{
-    margin-right: 30px !important;
-}
-#navbarDropdown{
-    font-size: large;
-    font-weight: bolder;
-    padding-left: 10px;
-}
-.login{
-    height: 35px;
-    width: 150px;
-}
-.pl-5{
-    padding-left: 20px;
-}
-.card {
-       box-shadow: rgba(0, 0, 0, 0.24) 3px 5px 10px;
-      }
-      .footer-cta {
-        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
-      }
-      .price {
-        color: #263238;
-        font-size: 24px;
-      }
+        .navbar {
+            width: 100%;
+        }
 
-      .card-title {
-      color:#263238
-      }
+        .navbar-brand {
+            font-style: bold;
+            font-size: 80px;
+            color: black;
 
-      .sale {
-        color: #E53935
-      }
+        }
 
-      .sale-badge {
-        background-color: #E53935
-      }
+        .btn-outline-success {
+            background-color: rgb(147, 231, 136);
+        }
 
+        .width-100 {
+            width: 100% !important;
+        }
 
-.payment{
-    font-style: bold;
-}
-#shipping{
-    width: 70px;
-    height: 60px;
-}
-#return{
-    width: 50px;
-    height: 50px;
-}
-#brand{
-    width: 50px;
-    height: 50px;
-}
-#srb{
-    font-size: large;
-    font-style: normal;
-}
-#oro{
-    font-size: small;
-    font-style: normal;
-    font-style: italic;
-}
+        .margin-20 {
+            margin-right: 50px !important;
+        }
 
-#payment{
-    margin-left: 20px;
-    height: 70px;
-    width: 60px;
+        .margin-5 {
+            margin-left: 20px !important;
+        }
 
-}
-#beauty{
-    height: 60px;
-    width: 80px;
+        .margin-10 {
+            margin-right: 30px !important;
+        }
 
-}
-#help{
-    height: 60px;
-    width: 70px;
+        #navbarDropdown {
+            font-size: large;
+            font-weight: bolder;
+            padding-left: 10px;
+        }
 
-}
-#sbh{
-    font-size: larger;
-    font-style: normal;
-    margin-left: 3%;
-}
-#agt{
-    font-size: small;
-    font-style: normal;
-    font-style: italic;
-}
+        .login {
+            height: 35px;
+            width: 150px;
+        }
 
-#epn{
-    font-size: larger;
-    font-style: normal;
-}
-#apf{
-    font-size: small;
-    font-style: normal;
-    font-style: italic;
-}
-#pay{
-    margin-left: 20px;
-    height: 40px;
-    width: 160px;
-}
-#net{
-    margin-left: 20px;
-    font-size: small;
-    font-style: normal;
-}
-#cash{
-    margin-left: 20px;
-    font-size: small;
-    font-style: normal;
-}
-.foots{
-    width: 100%;
-    background-color: black;
-    color: white;
-}
-.copy{
-    text-align: center;
-}
-.connect{
-    height: 20px;
-    width: 10px;
-}
-.center{
-    display: block;
-    height: 60%;
-    width: 80%;
-    margin-left: 10%;
-    margin-right: 10%;
-}
-.pl-5{
-    padding-left: 20px;
-}
+        .pl-5 {
+            padding-left: 20px;
+        }
+
+        .images {
+            display: flex;
+            justify-content: space-between;
+            width: 60%;
+            height: 20%;
+            margin-top: 15px;
+        }
+
+        .small-img {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border: 1.5px solid black;
+        }
+
+        .small-img img {
+            width: inherit;
+            cursor: pointer;
+        }
+
+        .small-img:hover img {
+            transform: scale(1.2);
+        }
+
+        .payment {
+            font-style: bold;
+        }
+
+        #shipping {
+            width: 70px;
+            height: 60px;
+        }
+
+        #return {
+            width: 50px;
+            height: 50px;
+        }
+
+        #brand {
+            width: 50px;
+            height: 50px;
+        }
+
+        #srb {
+            font-size: large;
+            font-style: normal;
+        }
+
+        #oro {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #payment {
+            margin-left: 100px;
+            height: 70px;
+            width: 60px;
+
+        }
+
+        #beauty {
+            height: 60px;
+            width: 80px;
+
+        }
+
+        #help {
+            height: 60px;
+            width: 70px;
+
+        }
+
+        #sbh {
+            font-size: larger;
+            font-style: normal;
+            margin-left: 3%;
+        }
+
+        #agt {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #epn {
+            font-size: larger;
+            font-style: normal;
+        }
+
+        #apf {
+            font-size: small;
+            font-style: normal;
+            font-style: italic;
+        }
+
+        #pay {
+            margin-left: 100px;
+            height: 40px;
+            width: 160px;
+        }
+
+        #net {
+            margin-left: 100px;
+            font-size: small;
+            font-style: normal;
+        }
+
+        #cash {
+            margin-left: 100px;
+            font-size: small;
+            font-style: normal;
+        }
+
+        .foots {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .copy {
+            text-align: center;
+        }
+
+        .connect {
+            height: 20px;
+            width: 10px;
+        }
+
+        .center {
+            display: block;
+            height: 60%;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
 
 /* search */
 
